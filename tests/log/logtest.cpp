@@ -38,7 +38,7 @@
 #endif // WXWIN_COMPATIBILITY_2_8
 
 // all calls to wxLogXXX() functions from this file will use this log component
-#define wxLOG_COMPONENT "test"
+#define wxLOG_COMPONENT wxT("test")
 
 // ----------------------------------------------------------------------------
 // test loggers
@@ -248,7 +248,7 @@ void LogTestCase::Null()
 void LogTestCase::Component()
 {
     wxLogMessage("Message");
-    CPPUNIT_ASSERT_EQUAL( std::string(wxLOG_COMPONENT),
+    CPPUNIT_ASSERT_EQUAL( std::wstring(wxLOG_COMPONENT),
                           m_log->GetInfo(wxLOG_Message).component );
 
     // completely disable logging for this component
@@ -258,7 +258,7 @@ void LogTestCase::Component()
     wxLog::SetComponentLevel("test/ignore/not", wxLOG_Max);
 
     #undef wxLOG_COMPONENT
-    #define wxLOG_COMPONENT "test/ignore"
+    #define wxLOG_COMPONENT wxT("test/ignore")
 
     // this shouldn't be output as this component is ignored
     wxLogError("Error");
@@ -266,19 +266,19 @@ void LogTestCase::Component()
 
     // and so are its subcomponents
     #undef wxLOG_COMPONENT
-    #define wxLOG_COMPONENT "test/ignore/sub/subsub"
+    #define wxLOG_COMPONENT wxT("test/ignore/sub/subsub")
     wxLogError("Error");
     CPPUNIT_ASSERT_EQUAL( "", m_log->GetLog(wxLOG_Error) );
 
     // but one subcomponent is not
     #undef wxLOG_COMPONENT
-    #define wxLOG_COMPONENT "test/ignore/not"
+    #define wxLOG_COMPONENT wxT("test/ignore/not")
     wxLogError("Error");
     CPPUNIT_ASSERT_EQUAL( "Error", m_log->GetLog(wxLOG_Error) );
 
     // restore the original value
     #undef wxLOG_COMPONENT
-    #define wxLOG_COMPONENT "test"
+    #define wxLOG_COMPONENT wxT("test")
 }
 
 #if wxDEBUG_LEVEL
