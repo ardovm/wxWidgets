@@ -29,15 +29,15 @@
 #include "wx/app.h"
 WX_CHECK_BUILD_OPTIONS("wxWEBVIEW")
 
-extern WXDLLIMPEXP_DATA_WEBVIEW(const char) wxWebViewNameStr[] = "wxWebView";
-extern WXDLLIMPEXP_DATA_WEBVIEW(const char) wxWebViewDefaultURLStr[] = "about:blank";
-extern WXDLLIMPEXP_DATA_WEBVIEW(const char) wxWebViewBackendIE[] = "wxWebViewIE";
-extern WXDLLIMPEXP_DATA_WEBVIEW(const char) wxWebViewBackendWebKit[] = "wxWebViewWebKit";
+extern WXDLLIMPEXP_DATA_WEBVIEW(const wchar_t) wxWebViewNameStr[] = wxT("wxWebView");
+extern WXDLLIMPEXP_DATA_WEBVIEW(const wchar_t) wxWebViewDefaultURLStr[] = wxT("about:blank");
+extern WXDLLIMPEXP_DATA_WEBVIEW(const wchar_t) wxWebViewBackendIE[] = wxT("wxWebViewIE");
+extern WXDLLIMPEXP_DATA_WEBVIEW(const wchar_t) wxWebViewBackendWebKit[] = wxT("wxWebViewWebKit");
 
 #ifdef __WXMSW__
-extern WXDLLIMPEXP_DATA_WEBVIEW(const char) wxWebViewBackendDefault[] = "wxWebViewIE";
+extern WXDLLIMPEXP_DATA_WEBVIEW(const wchar_t) wxWebViewBackendDefault[] = wxT("wxWebViewIE");
 #else
-extern WXDLLIMPEXP_DATA_WEBVIEW(const char) wxWebViewBackendDefault[] = "wxWebViewWebKit";
+extern WXDLLIMPEXP_DATA_WEBVIEW(const wchar_t) wxWebViewBackendDefault[] = wxT("wxWebViewWebKit");
 #endif
 
 wxIMPLEMENT_ABSTRACT_CLASS(wxWebView, wxControl);

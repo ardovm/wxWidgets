@@ -42,7 +42,7 @@
 // implementation
 // ============================================================================
 
-const char wxCollapsiblePaneNameStr[] = "collapsiblePane";
+const wchar_t wxCollapsiblePaneNameStr[] = wxT("collapsiblePane");
 
 //-----------------------------------------------------------------------------
 // wxGenericCollapsiblePane
