@@ -4488,13 +4488,11 @@ bool wxPropertyGrid::DoExpand( wxPGProperty* p, bool sendEvents )
 {
     wxCHECK_MSG( p, false, wxS("invalid property id") );
 
-    wxPGProperty* pwc = (wxPGProperty*)p;
-
     // Store dont-center-splitter flag 'cause we need to temporarily set it
     bool prevDontCenterSplitter = m_pState->m_dontCenterSplitter;
     m_pState->m_dontCenterSplitter = true;
 
-    bool res = m_pState->DoExpand(pwc);
+    bool res = m_pState->DoExpand(p);
 
     if ( res )
     {
@@ -4870,8 +4868,7 @@ bool wxPropertyGrid::HandleMouseClick( int x, unsigned int y, wxMouseEvent &even
                     // On double-click, expand/collapse.
                     if ( event.ButtonDClick() && !(m_windowStyle & wxPG_HIDE_MARGIN) )
                     {
-                        wxPGProperty* pwc = (wxPGProperty*)p;
-                        if ( pwc->IsExpanded() ) DoCollapse( p, true );
+                        if ( p->IsExpanded() ) DoCollapse( p, true );
                         else DoExpand( p, true );
                     }
 
@@ -4892,6 +4889,7 @@ bool wxPropertyGrid::HandleMouseClick( int x, unsigned int y, wxMouseEvent &even
                         {
                             ResetColumnSizes( true );
 
+                            SendEvent(wxEVT_PG_COLS_RESIZED, (wxPGProperty*)NULL);
                             SendEvent(wxEVT_PG_COL_DRAGGING,
                                       m_propHover,
                                       NULL,
@@ -4961,7 +4959,7 @@ bool wxPropertyGrid::HandleMouseClick( int x, unsigned int y, wxMouseEvent &even
                     if ( (y2 >= m_buttonSpacingY && y2 < (m_buttonSpacingY+m_iconHeight)) )
                     {
                         // On click on expander button, expand/collapse
-                        if ( ((wxPGProperty*)p)->IsExpanded() )
+                        if ( p->IsExpanded() )
                             DoCollapse( p, true );
                         else
                             DoExpand( p, true );
@@ -5050,6 +5048,7 @@ bool wxPropertyGrid::HandleMouseMove( int x, unsigned int y,
                                       wxPG_SPLITTER_REFRESH |
                                       wxPG_SPLITTER_FROM_EVENT);
 
+                SendEvent(wxEVT_PG_COLS_RESIZED, (wxPGProperty*)NULL);
                 SendEvent(wxEVT_PG_COL_DRAGGING,
                           m_propHover,
                           NULL,
@@ -6315,7 +6314,9 @@ wxDEFINE_EVENT( wxEVT_PG_LABEL_EDIT_ENDING, wxPropertyGridEvent );
 wxDEFINE_EVENT( wxEVT_PG_COL_BEGIN_DRAG, wxPropertyGridEvent );
 wxDEFINE_EVENT( wxEVT_PG_COL_DRAGGING, wxPropertyGridEvent );
 wxDEFINE_EVENT( wxEVT_PG_COL_END_DRAG, wxPropertyGridEvent );
+// Events used only internally
 wxDEFINE_EVENT( wxEVT_PG_HSCROLL, wxPropertyGridEvent);
+wxDEFINE_EVENT( wxEVT_PG_COLS_RESIZED, wxPropertyGridEvent);
 
 // -----------------------------------------------------------------------
 

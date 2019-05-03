@@ -948,10 +948,7 @@ void wxSystemColourProperty::Init( int type, const wxColour& colour )
 {
     wxColourPropertyValue cpv;
 
-    if ( colour.IsOk() )
-        cpv.Init( type, colour );
-    else
-        cpv.Init( type, *wxWHITE );
+    cpv.Init(type, colour.IsOk() ? colour : *wxWHITE);
 
     m_flags |= wxPG_PROP_STATIC_CHOICES; // Colour selection cannot be changed.
 
@@ -1593,11 +1590,7 @@ bool wxSystemColourProperty::DoSetAttribute( const wxString& name, wxVariant& va
     }
     else if ( name == wxPG_COLOUR_HAS_ALPHA )
     {
-        if ( value.GetBool() )
-            m_flags |= wxPG_PROP_COLOUR_HAS_ALPHA;
-        else
-            m_flags &= ~(wxPG_PROP_COLOUR_HAS_ALPHA);
-
+        ChangeFlag(wxPG_PROP_COLOUR_HAS_ALPHA, value.GetBool());
         return true;
     }
     return wxEnumProperty::DoSetAttribute(name, value);
