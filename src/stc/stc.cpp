@@ -58,7 +58,7 @@
 
 //----------------------------------------------------------------------
 
-const wchar_t wxSTCNameStr[] = wxT("stcwindow");
+const char wxSTCNameStr[] = "stcwindow";
 
 #ifdef MAKELONG
 #undef MAKELONG
