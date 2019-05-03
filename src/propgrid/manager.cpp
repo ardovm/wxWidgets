@@ -73,7 +73,7 @@
 // wxPropertyGridManager
 // -----------------------------------------------------------------------
 
-const char wxPropertyGridManagerNameStr[] = "wxPropertyGridManager";
+const wchar_t wxPropertyGridManagerNameStr[] = wxT("wxPropertyGridManager");
 
 
 // Categoric Mode Icon

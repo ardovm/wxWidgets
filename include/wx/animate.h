@@ -23,7 +23,7 @@
 class WXDLLIMPEXP_FWD_CORE wxAnimation;
 
 extern WXDLLIMPEXP_DATA_CORE(wxAnimation) wxNullAnimation;
-extern WXDLLIMPEXP_DATA_CORE(const char) wxAnimationCtrlNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxAnimationCtrlNameStr[];
 
 
 // ----------------------------------------------------------------------------

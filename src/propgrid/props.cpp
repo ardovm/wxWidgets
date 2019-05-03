@@ -1205,7 +1205,7 @@ wxEnumProperty::wxEnumProperty( const wxString& label, const wxString& name, con
 }
 
 wxEnumProperty::wxEnumProperty( const wxString& label, const wxString& name,
-    const char* const* untranslatedLabels,
+    const wchar_t* const* untranslatedLabels,
     const long* values, wxPGChoices* choicesCache, int value )
     : wxPGProperty(label,name)
 {
@@ -1430,7 +1430,7 @@ wxEditEnumProperty::wxEditEnumProperty( const wxString& label, const wxString& n
     SetValue( value );
 }
 
-wxEditEnumProperty::wxEditEnumProperty( const wxString& label, const wxString& name, const char* const* labels,
+wxEditEnumProperty::wxEditEnumProperty( const wxString& label, const wxString& name, const wchar_t* const* labels,
     const long* values, wxPGChoices* choicesCache, const wxString& value )
     : wxEnumProperty(label,name,labels,values,choicesCache,0)
 {

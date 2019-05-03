@@ -35,7 +35,7 @@
 // --keyword="_" --keyword="wxPLURAL:1,2" options
 // to extract the strings from the sources)
 #ifndef WXINTL_NO_GETTEXT_MACRO
-    #define _(s)                               wxGetTranslation((s))
+    #define _(s)                               wxGetTranslation(wxT(s))
     #define wxPLURAL(sing, plur, n)            wxGetTranslation((sing), (plur), n)
 #endif
 
@@ -50,7 +50,7 @@
 
 // another one which just marks the strings for extraction, but doesn't
 // perform the translation (use -kwxTRANSLATE with xgettext!)
-#define wxTRANSLATE(str) str
+#define wxTRANSLATE(str) wxT(str)
 
 // ----------------------------------------------------------------------------
 // forward decls
@@ -143,7 +143,7 @@ public:
     // find best translation language for given domain
     wxString GetBestTranslation(const wxString& domain, wxLanguage msgIdLanguage);
     wxString GetBestTranslation(const wxString& domain,
-                                const wxString& msgIdLanguage = "en");
+                                const wxString& msgIdLanguage = wxT("en"));
 
     // add standard wxWidgets catalog ("wxstd")
     bool AddStdCatalog();

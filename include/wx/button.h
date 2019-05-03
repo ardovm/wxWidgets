@@ -17,7 +17,7 @@
 
 #include "wx/anybutton.h"
 
-extern WXDLLIMPEXP_DATA_CORE(const char) wxButtonNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxButtonNameStr[];
 
 // ----------------------------------------------------------------------------
 // wxButton: a push button

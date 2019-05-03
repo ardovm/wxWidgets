@@ -514,7 +514,7 @@ void MyFrame::OnTest2(wxCommandEvent& WXUNUSED(event))
 
 void MyFrame::OnTest3(wxCommandEvent& WXUNUSED(event))
 {
-    const char* lines[] =
+    const wchar_t* lines[] =
     {
         wxTRANSLATE("line 1"),
         wxTRANSLATE("line 2"),

@@ -91,10 +91,10 @@ class WXDLLIMPEXP_FWD_BASE wxObject;
 #ifndef wxLOG_COMPONENT
     // this is a variable and not a macro in order to allow the user code to
     // just #define wxLOG_COMPONENT without #undef'ining it first
-    extern WXDLLIMPEXP_DATA_BASE(const char *) wxLOG_COMPONENT;
+    extern WXDLLIMPEXP_DATA_BASE(const wchar_t *) wxLOG_COMPONENT;
 
     #ifdef WXBUILDING
-        #define wxLOG_COMPONENT "wx"
+        #define wxLOG_COMPONENT wxT("wx")
     #endif
 #endif
 
@@ -151,7 +151,7 @@ public:
     wxLogRecordInfo(const char *filename_,
                     int line_,
                     const char *func_,
-                    const char *component_)
+                    const wchar_t *component_)
     {
         filename = filename_;
         func = func_;
@@ -206,7 +206,7 @@ public:
 
     // the name of the component which generated this message, may be NULL if
     // not set (i.e. wxLOG_COMPONENT not defined)
-    const char *component;
+    const wchar_t *component;
 
     // time of record generation
     time_t timestamp;
@@ -288,7 +288,7 @@ private:
     ExtraData *m_data;
 };
 
-#define wxLOG_KEY_TRACE_MASK "wx.trace_mask"
+#define wxLOG_KEY_TRACE_MASK wxT("wx.trace_mask")
 
 // ----------------------------------------------------------------------------
 // log record: a unit of log output
@@ -891,7 +891,7 @@ public:
              const char *filename,
              int line,
              const char *func,
-             const char *component)
+             const wchar_t *component)
         : m_level(level),
           m_info(filename, line, func, component)
     {

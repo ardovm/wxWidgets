@@ -29,7 +29,7 @@
 #include "wx/image.h"
 #include "wx/dcmemory.h"
 
-const char wxAnimationCtrlNameStr[] = "animationctrl";
+const wchar_t wxAnimationCtrlNameStr[] = wxT("animationctrl");
 
 // global object
 wxAnimation wxNullAnimation;

@@ -120,12 +120,12 @@ extern const CommonInfo g_CommonPrefs;
 // LanguageInfo
 
 struct LanguageInfo {
-    const char *name;
+    const wchar_t *name;
     const char *filepattern;
     int lexer;
     struct {
         int type;
-        const char *words;
+        const wchar_t *words;
     } styles [STYLE_TYPES_COUNT];
     int folds;
 };

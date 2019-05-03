@@ -59,7 +59,7 @@
 #endif
 
 #undef wxLOG_COMPONENT
-const char *wxLOG_COMPONENT = "";
+const wchar_t *wxLOG_COMPONENT = wxT("");
 
 // this macro allows to define an object which will be initialized before any
 // other function in this file is called: this is necessary to allow log

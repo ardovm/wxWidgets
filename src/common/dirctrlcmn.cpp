@@ -19,9 +19,9 @@
 
 #include "wx/generic/dirctrlg.h"
 
-extern WXDLLEXPORT_DATA(const char) wxDirDialogNameStr[] = "wxDirCtrl";
-extern WXDLLEXPORT_DATA(const char) wxDirDialogDefaultFolderStr[] = "/";
-extern WXDLLEXPORT_DATA(const char) wxDirSelectorPromptStr[] = "Select a directory";
+extern WXDLLEXPORT_DATA(const wchar_t) wxDirDialogNameStr[] = wxT("wxDirCtrl");
+extern WXDLLEXPORT_DATA(const wchar_t) wxDirDialogDefaultFolderStr[] = wxT("/");
+extern WXDLLEXPORT_DATA(const wchar_t) wxDirSelectorPromptStr[] = wxT("Select a directory");
 
 //-----------------------------------------------------------------------------
 // XTI

@@ -46,7 +46,7 @@
 
 #include "wx/display.h"
 
-extern WXDLLEXPORT_DATA(const char) wxDialogNameStr[] = "dialog";
+extern WXDLLEXPORT_DATA(const wchar_t) wxDialogNameStr[] = wxT("dialog");
 
 // ----------------------------------------------------------------------------
 // XTI

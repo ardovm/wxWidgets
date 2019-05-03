@@ -11,7 +11,7 @@
 #ifndef _WX_CONTROL_H_
 #define _WX_CONTROL_H_
 
-WXDLLIMPEXP_DATA_CORE(extern const char) wxControlNameStr[];
+WXDLLIMPEXP_DATA_CORE(extern const wchar_t) wxControlNameStr[];
 
 // General item class
 class WXDLLIMPEXP_CORE wxControl : public wxControlBase

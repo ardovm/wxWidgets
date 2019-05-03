@@ -69,6 +69,7 @@ public:
     // of FuncReturningAnyStrPtr() to either char* or wxChar* (i.e. wchar_t*)
     operator const char *() const
     {
+#ifndef wxNO_UNSAFE_WXSTRING_CONV2
         if ( !m_str )
             return NULL;
 
@@ -93,6 +94,9 @@ public:
         //else: conversion failed, return "" as we can't do anything else
 
         return p;
+#else // wxNO_UNSAFE_WXSTRING_CONV2
+        return NULL;
+#endif
     }
 
     operator const wchar_t *() const

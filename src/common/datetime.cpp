@@ -191,8 +191,8 @@ const long wxDateTime::TIME_T_FACTOR = 1000l;
 // global data
 // ----------------------------------------------------------------------------
 
-const char wxDefaultDateTimeFormat[] = "%c";
-const char wxDefaultTimeSpanFormat[] = "%H:%M:%S";
+const wchar_t wxDefaultDateTimeFormat[] = wxT("%c");
+const wchar_t wxDefaultTimeSpanFormat[] = wxT("%H:%M:%S");
 
 // in the fine tradition of ANSI C we use our equivalent of (time_t)-1 to
 // indicate an invalid wxDateTime object

@@ -54,7 +54,7 @@
 #include "wx/generic/grideditors.h"
 #include "wx/generic/private/grid.h"
 
-const char wxGridNameStr[] = "grid";
+const wchar_t wxGridNameStr[] = wxT("grid");
 
 // Required for wxIs... functions
 #include <ctype.h>

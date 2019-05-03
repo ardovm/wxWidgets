@@ -37,7 +37,7 @@
 #include "wx/odcombo.h"
 
 
-const char wxBitmapComboBoxNameStr[] = "bitmapComboBox";
+const wchar_t wxBitmapComboBoxNameStr[] = wxT("bitmapComboBox");
 
 #if defined(wxBITMAPCOMBOBOX_OWNERDRAWN_BASED)
 
