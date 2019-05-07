@@ -23,7 +23,7 @@ public:
                  const wxPoint &pos = wxDefaultPosition,
                  const wxSize &size = wxDefaultSize,
                  long style = 0,
-                 const wxString &name = wxStaticTextNameStr );
+                 const wxString &name = wxString(wxStaticTextNameStr, wxConvLibc) );
 
     bool Create(wxWindow *parent,
                 wxWindowID id,
@@ -31,7 +31,7 @@ public:
                 const wxPoint &pos = wxDefaultPosition,
                 const wxSize &size = wxDefaultSize,
                 long style = 0,
-                const wxString &name = wxStaticTextNameStr );
+                const wxString &name = wxString(wxStaticTextNameStr, wxConvLibc) );
 
     void SetLabel( const wxString &label ) wxOVERRIDE;
 

@@ -24,7 +24,7 @@ public:
                const wxPoint& pos = wxDefaultPosition,
                const wxSize& size = wxDefaultSize,
                long style = wxDEFAULT_FRAME_STYLE,
-               const wxString& name = wxFrameNameStr)
+               const wxString& name = wxString(wxFrameNameStr, wxConvLibc))
     {
         Init();
 
@@ -37,7 +37,7 @@ public:
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize,
                 long style = wxDEFAULT_FRAME_STYLE,
-                const wxString& name = wxFrameNameStr);
+                const wxString& name = wxString(wxFrameNameStr, wxConvLibc));
 
 #if wxUSE_STATUSBAR
     void SetStatusBar(wxStatusBar *statbar) wxOVERRIDE;

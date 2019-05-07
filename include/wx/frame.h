@@ -64,7 +64,7 @@ public:
                  const wxPoint& pos = wxDefaultPosition,
                  const wxSize& size = wxDefaultSize,
                  long style = wxDEFAULT_FRAME_STYLE,
-                 const wxString& name = wxFrameNameStr);
+                 const wxString& name = wxString(wxFrameNameStr, wxConvLibc));
 
     // frame state
     // -----------
@@ -106,7 +106,7 @@ public:
     virtual wxStatusBar* CreateStatusBar(int number = 1,
                                          long style = wxSTB_DEFAULT_STYLE,
                                          wxWindowID winid = 0,
-                                         const wxString& name = wxStatusLineNameStr);
+                                         const wxString& name = wxString(wxStatusLineNameStr, wxConvLibc));
     // return a new status bar
     virtual wxStatusBar *OnCreateStatusBar(int number,
                                            long style,
@@ -136,7 +136,7 @@ public:
     // create main toolbar bycalling OnCreateToolBar()
     virtual wxToolBar* CreateToolBar(long style = -1,
                                      wxWindowID winid = wxID_ANY,
-                                     const wxString& name = wxToolBarNameStr);
+                                     const wxString& name = wxString(wxToolBarNameStr, wxConvLibc));
     // return a new toolbar
     virtual wxToolBar *OnCreateToolBar(long style,
                                        wxWindowID winid,

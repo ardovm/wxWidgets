@@ -25,14 +25,14 @@ public:
                     const wxPoint& pos = wxDefaultPosition,
                     const wxSize& size = wxDefaultSize,
                     long style = 0,
-                    const wxString& name = wxStaticBitmapNameStr );
+                    const wxString& name = wxString(wxStaticBitmapNameStr, wxConvLibc));
     bool Create( wxWindow *parent,
                  wxWindowID id,
                  const wxBitmap& label,
                  const wxPoint& pos = wxDefaultPosition,
                  const wxSize& size = wxDefaultSize,
                  long style = 0,
-                 const wxString& name = wxStaticBitmapNameStr);
+                 const wxString& name = wxString(wxStaticBitmapNameStr, wxConvLibc));
 
     virtual void SetIcon(const wxIcon& icon) wxOVERRIDE { SetBitmap( icon ); }
     virtual void SetBitmap( const wxBitmap& bitmap ) wxOVERRIDE;

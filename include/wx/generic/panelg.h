@@ -24,7 +24,7 @@ public:
             const wxPoint& pos = wxDefaultPosition,
             const wxSize& size = wxDefaultSize,
             long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-            const wxString& name = wxPanelNameStr)
+            const wxString& name = wxString(wxPanelNameStr, wxConvLibc))
     {
         Create(parent, winid, pos, size, style, name);
     }
@@ -34,7 +34,7 @@ public:
     wxPanel(wxWindow *parent,
             int x, int y, int width, int height,
             long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-            const wxString& name = wxPanelNameStr)
+            const wxString& name = wxString(wxPanelNameStr, wxConvLibc))
     {
         Create(parent, wxID_ANY, wxPoint(x, y), wxSize(width, height), style, name);
     }

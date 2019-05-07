@@ -45,7 +45,7 @@ public:
                 const wxSize &size = wxDefaultSize,
                 long style = wxLC_ICON,
                 const wxValidator& validator = wxDefaultValidator,
-                const wxString &name = wxListCtrlNameStr)
+                const wxString &name = wxString(wxListCtrlNameStr, wxConvLibc))
             : wxScrollHelper(this)
     {
         Create(parent, winid, pos, size, style, validator, name);
@@ -61,7 +61,7 @@ public:
                  const wxSize &size = wxDefaultSize,
                  long style = wxLC_ICON,
                  const wxValidator& validator = wxDefaultValidator,
-                 const wxString &name = wxListCtrlNameStr);
+                 const wxString &name = wxString(wxListCtrlNameStr, wxConvLibc));
 
     bool GetColumn( int col, wxListItem& item ) const wxOVERRIDE;
     bool SetColumn( int col, const wxListItem& item ) wxOVERRIDE;
@@ -267,7 +267,7 @@ public:
                const wxSize& size = wxDefaultSize,
                long style = wxLC_ICON,
                const wxValidator &validator = wxDefaultValidator,
-               const wxString &name = wxListCtrlNameStr)
+               const wxString &name = wxString(wxListCtrlNameStr, wxConvLibc))
     : wxGenericListCtrl(parent, winid, pos, size, style, validator, name)
     {
     }

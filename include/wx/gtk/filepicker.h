@@ -64,7 +64,7 @@ public:
                  const wxSize& size = wxDefaultSize,
                  long style = wxFILEBTN_DEFAULT_STYLE,
                  const wxValidator& validator = wxDefaultValidator,
-                 const wxString& name = wxFilePickerWidgetNameStr)
+                 const wxString& name = wxString(wxFilePickerWidgetNameStr, wxConvLibc))
     {
         Init();
         m_pickerStyle = style;
@@ -87,7 +87,7 @@ public:     // overrides
                 const wxSize& size = wxDefaultSize,
                 long style = 0,
                 const wxValidator& validator = wxDefaultValidator,
-                const wxString& name = wxFilePickerWidgetNameStr);
+                const wxString& name = wxString(wxFilePickerWidgetNameStr, wxConvLibc));
 
     // event handler for the click
     void OnDialogOK(wxCommandEvent &);
@@ -128,7 +128,7 @@ public:
                 const wxSize& size = wxDefaultSize,
                 long style = wxDIRBTN_DEFAULT_STYLE,
                 const wxValidator& validator = wxDefaultValidator,
-                const wxString& name = wxFilePickerWidgetNameStr)
+                const wxString& name = wxString(wxFilePickerWidgetNameStr, wxConvLibc))
     {
         Init();
 
@@ -153,7 +153,7 @@ public:     // overrides
                 const wxSize& size = wxDefaultSize,
                 long style = 0,
                 const wxValidator& validator = wxDefaultValidator,
-                const wxString& name = wxFilePickerWidgetNameStr);
+                const wxString& name = wxString(wxFilePickerWidgetNameStr, wxConvLibc));
 
 
     // GtkFileChooserButton does not support GTK_FILE_CHOOSER_CREATE_FOLDER

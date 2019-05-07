@@ -35,7 +35,7 @@ public:
                int n = 0, const wxString choices[] = NULL,
                long style = 0,
                const wxValidator& validator = wxDefaultValidator,
-               const wxString& name = wxComboBoxNameStr)
+               const wxString& name = wxString(wxComboBoxNameStr, wxConvLibc))
         : wxChoice(), wxTextEntry()
     {
         Init();

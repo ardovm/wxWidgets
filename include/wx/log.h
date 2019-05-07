@@ -288,7 +288,7 @@ private:
     ExtraData *m_data;
 };
 
-#define wxLOG_KEY_TRACE_MASK "wx.trace_mask"
+#define wxLOG_KEY_TRACE_MASK wxT("wx.trace_mask")
 
 // ----------------------------------------------------------------------------
 // log record: a unit of log output
@@ -928,7 +928,7 @@ public:
     {
         // remember that fatal errors can't be disabled
         if ( m_level == wxLOG_FatalError ||
-                wxLog::IsLevelEnabled(m_level, m_info.component) )
+                wxLog::IsLevelEnabled(m_level, wxString(m_info.component, wxConvLibc)) )
             DoCallOnLog(format, argptr);
     }
 
@@ -1057,7 +1057,7 @@ private:
 
     void DoLogAtLevel(wxLogLevel level, const wxChar *format, ...)
     {
-        if ( !wxLog::IsLevelEnabled(level, m_info.component) )
+        if ( !wxLog::IsLevelEnabled(level, wxString(m_info.component, wxConvLibc)) )
             return;
 
         va_list argptr;
@@ -1126,7 +1126,7 @@ private:
 
     void DoLogAtLevelUtf8(wxLogLevel level, const char *format, ...)
     {
-        if ( !wxLog::IsLevelEnabled(level, m_info.component) )
+        if ( !wxLog::IsLevelEnabled(level, wxString(m_info.component, wxConvLibc)) )
             return;
 
         va_list argptr;

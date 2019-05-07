@@ -1591,7 +1591,7 @@ protected:
                     const wxSize& size = wxDefaultSize,
                     long style = 0,
                     const wxValidator& validator = wxDefaultValidator,
-                    const wxString& name = wxPanelNameStr);
+                    const wxString& name = wxString(wxPanelNameStr, wxConvLibc));
 
     bool CreateBase(wxWindowBase *parent,
                     wxWindowID winid,

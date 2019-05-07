@@ -22,7 +22,7 @@ public:
            const wxPoint& pos = wxDefaultPosition,
            const wxSize& size = wxDefaultSize, long style = 0,
            const wxValidator& validator = wxDefaultValidator,
-           const wxString& name = wxButtonNameStr)
+           const wxString& name = wxString(wxButtonNameStr, wxConvLibc))
     {
         Create(parent, id, label, pos, size, style, validator, name);
     }
@@ -32,7 +32,7 @@ public:
            const wxPoint& pos = wxDefaultPosition,
            const wxSize& size = wxDefaultSize, long style = 0,
            const wxValidator& validator = wxDefaultValidator,
-           const wxString& name = wxButtonNameStr);
+           const wxString& name = wxString(wxButtonNameStr, wxConvLibc));
 
     virtual wxWindow *SetDefault() wxOVERRIDE;
     virtual void SetLabel( const wxString &label ) wxOVERRIDE;
