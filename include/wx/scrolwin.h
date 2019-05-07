@@ -390,7 +390,7 @@ public:
                const wxPoint& pos = wxDefaultPosition,
                const wxSize& size = wxDefaultSize,
                long style = wxScrolledWindowStyle,
-               const wxString& name = wxPanelNameStr)
+               const wxString& name = wxString(wxPanelNameStr, wxConvLibc))
         : wxScrollHelper(this)
     {
         Create(parent, winid, pos, size, style, name);
@@ -401,7 +401,7 @@ public:
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize,
                 long style = wxScrolledWindowStyle,
-                const wxString& name = wxPanelNameStr)
+                const wxString& name = wxString(wxPanelNameStr, wxConvLibc))
     {
         m_targetWindow = this;
 
@@ -458,7 +458,7 @@ public:
                      const wxPoint& pos = wxDefaultPosition,
                      const wxSize& size = wxDefaultSize,
                      long style = wxScrolledWindowStyle,
-                     const wxString& name = wxPanelNameStr)
+                     const wxString& name = wxString(wxPanelNameStr, wxConvLibc))
         : wxScrolled<wxPanel>(parent, winid, pos, size, style, name) {}
 
     wxDECLARE_DYNAMIC_CLASS_NO_COPY(wxScrolledWindow);

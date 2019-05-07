@@ -49,7 +49,7 @@ public:
                const wxArrayString& choices,
                long style = 0,
                const wxValidator& validator = wxDefaultValidator,
-               const wxString& name = wxComboBoxNameStr)
+               const wxString& name = wxString(wxComboBoxNameStr, wxConvLibc))
         : wxChoice(), wxTextEntry()
     {
         Init();
@@ -64,7 +64,7 @@ public:
                 int n = 0, const wxString choices[] = (const wxString *) NULL,
                 long style = 0,
                 const wxValidator& validator = wxDefaultValidator,
-                const wxString& name = wxComboBoxNameStr);
+                const wxString& name = wxString(wxComboBoxNameStr, wxConvLibc));
     bool Create(wxWindow *parent, wxWindowID id,
                 const wxString& value,
                 const wxPoint& pos,
@@ -72,7 +72,7 @@ public:
                 const wxArrayString& choices,
                 long style = 0,
                 const wxValidator& validator = wxDefaultValidator,
-                const wxString& name = wxComboBoxNameStr);
+                const wxString& name = wxString(wxComboBoxNameStr, wxConvLibc));
 
     // Set/GetSelection() from wxTextEntry and wxChoice
 

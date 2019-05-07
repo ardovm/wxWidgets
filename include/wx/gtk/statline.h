@@ -26,13 +26,13 @@ public:
                  const wxPoint &pos = wxDefaultPosition,
                  const wxSize& size = wxDefaultSize,
                  long style = wxLI_HORIZONTAL,
-                 const wxString &name = wxStaticLineNameStr);
+                 const wxString &name = wxString(wxStaticLineNameStr, wxConvLibc));
     bool Create(wxWindow *parent,
                 wxWindowID id = wxID_ANY,
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize,
                 long style = wxLI_HORIZONTAL,
-                const wxString &name = wxStaticLineNameStr);
+                const wxString &name = wxString(wxStaticLineNameStr, wxConvLibc));
 
     static wxVisualAttributes
     GetClassDefaultAttributes(wxWindowVariant variant = wxWINDOW_VARIANT_NORMAL);

@@ -34,14 +34,14 @@ public:
              const wxPoint& pos = wxDefaultPosition,
              const wxSize& size = wxDefaultSize,
              long style = 0,
-             const wxString& name = wxNotebookNameStr);
+             const wxString& name = wxString(wxNotebookNameStr, wxConvLibc));
       // Create() function
     bool Create(wxWindow *parent,
               wxWindowID id,
               const wxPoint& pos = wxDefaultPosition,
               const wxSize& size = wxDefaultSize,
               long style = 0,
-              const wxString& name = wxNotebookNameStr);
+              const wxString& name = wxString(wxNotebookNameStr, wxConvLibc));
       // dtor
     virtual ~wxNotebook();
 

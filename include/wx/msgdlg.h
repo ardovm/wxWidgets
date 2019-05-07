@@ -45,10 +45,12 @@ public:
         {
         }
 
+#ifndef wxNO_UNSAFE_WXSTRING_CONV2
         ButtonLabel(const char *label)
             : m_label(label), m_stockId(wxID_NONE)
         {
         }
+#endif // wxNO_UNSAFE_WXSTRING_CONV2
 
         ButtonLabel(const wchar_t *label)
             : m_label(label), m_stockId(wxID_NONE)
@@ -240,7 +242,7 @@ protected:
     {
         wxString msg = m_message;
         if ( !m_extendedMessage.empty() )
-            msg << "\n\n" << m_extendedMessage;
+            msg << wxT("\n\n") << m_extendedMessage;
 
         return msg;
     }
@@ -273,11 +275,11 @@ protected:
 private:
     // these functions may be overridden to provide different defaults for the
     // default button labels (this is used by wxGTK)
-    virtual wxString GetDefaultYesLabel() const { return wxGetTranslation("Yes"); }
-    virtual wxString GetDefaultNoLabel() const { return wxGetTranslation("No"); }
-    virtual wxString GetDefaultOKLabel() const { return wxGetTranslation("OK"); }
-    virtual wxString GetDefaultCancelLabel() const { return wxGetTranslation("Cancel"); }
-    virtual wxString GetDefaultHelpLabel() const { return wxGetTranslation("Help"); }
+    virtual wxString GetDefaultYesLabel() const { return wxGetTranslation(wxT("Yes")); }
+    virtual wxString GetDefaultNoLabel() const { return wxGetTranslation(wxT("No")); }
+    virtual wxString GetDefaultOKLabel() const { return wxGetTranslation(wxT("OK")); }
+    virtual wxString GetDefaultCancelLabel() const { return wxGetTranslation(wxT("Cancel")); }
+    virtual wxString GetDefaultHelpLabel() const { return wxGetTranslation(wxT("Help")); }
 
     // labels for the buttons, initially empty meaning that the defaults should
     // be used, use GetYes/No/OK/CancelLabel() to access them
@@ -314,7 +316,7 @@ private:
 // ----------------------------------------------------------------------------
 
 int WXDLLIMPEXP_CORE wxMessageBox(const wxString& message,
-                             const wxString& caption = wxMessageBoxCaptionStr,
+                             const wxString& caption = wxString(wxMessageBoxCaptionStr, wxConvLibc),
                              long style = wxOK | wxCENTRE,
                              wxWindow *parent = NULL,
                              int x = wxDefaultCoord, int y = wxDefaultCoord);
