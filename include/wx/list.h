@@ -338,10 +338,8 @@ public:
         { m_key.integer = i; }
     wxListKey(const wxString& s) : m_keyType(wxKEY_STRING)
         { m_key.string = new wxString(s); }
-#ifndef wxNO_UNSAFE_WXSTRING_CONV2
     wxListKey(const char *s) : m_keyType(wxKEY_STRING)
         { m_key.string = new wxString(s); }
-#endif // wxNO_UNSAFE_WXSTRING_CONV2
     wxListKey(const wchar_t *s) : m_keyType(wxKEY_STRING)
         { m_key.string = new wxString(s); }
 

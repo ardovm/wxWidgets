@@ -21,15 +21,15 @@
 class WXDLLIMPEXP_FWD_CORE wxDialog;
 class WXDLLIMPEXP_FWD_CORE wxFileDirPickerEvent;
 
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxFilePickerWidgetLabel[];
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxFilePickerWidgetNameStr[];
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxFilePickerCtrlNameStr[];
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxFileSelectorPromptStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxFilePickerWidgetLabel[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxFilePickerWidgetNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxFilePickerCtrlNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxFileSelectorPromptStr[];
 
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxDirPickerWidgetLabel[];
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxDirPickerWidgetNameStr[];
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxDirPickerCtrlNameStr[];
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxDirSelectorPromptStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxDirPickerWidgetLabel[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxDirPickerWidgetNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxDirPickerCtrlNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxDirSelectorPromptStr[];
 
 // ----------------------------------------------------------------------------
 // wxFileDirPickerEvent: used by wxFilePickerCtrl and wxDirPickerCtrl only

@@ -21,8 +21,8 @@
 
 class WXDLLIMPEXP_FWD_CORE wxFontPickerEvent;
 
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxFontPickerWidgetNameStr[];
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxFontPickerCtrlNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxFontPickerWidgetNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxFontPickerCtrlNameStr[];
 
 
 // ----------------------------------------------------------------------------

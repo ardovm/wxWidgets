@@ -19,7 +19,7 @@
 #include "wx/control.h"
 
 // class name
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxCollapsiblePaneNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxCollapsiblePaneNameStr[];
 
 // ----------------------------------------------------------------------------
 // wxCollapsiblePaneBase: interface for wxCollapsiblePane

@@ -878,7 +878,7 @@ void wxFontProperty::OnCustomPaint(wxDC& dc,
 #include "wx/colordlg.h"
 
 //#define wx_cp_es_syscolours_len 25
-static const wchar_t* const gs_cp_es_syscolour_labels[] = {
+static const char* const gs_cp_es_syscolour_labels[] = {
     /* TRANSLATORS: Keyword of system colour */ wxTRANSLATE("AppWorkspace"),
     /* TRANSLATORS: Keyword of system colour */ wxTRANSLATE("ActiveBorder"),
     /* TRANSLATORS: Keyword of system colour */ wxTRANSLATE("ActiveCaption"),
@@ -974,7 +974,7 @@ wxSystemColourProperty::wxSystemColourProperty( const wxString& label, const wxS
 
 
 wxSystemColourProperty::wxSystemColourProperty( const wxString& label, const wxString& name,
-    const wchar_t* const* labels, const long* values, wxPGChoices* choicesCache,
+    const char* const* labels, const long* values, wxPGChoices* choicesCache,
     const wxColourPropertyValue& value )
     : wxEnumProperty( label, name, labels, values, choicesCache )
 {
@@ -983,7 +983,7 @@ wxSystemColourProperty::wxSystemColourProperty( const wxString& label, const wxS
 
 
 wxSystemColourProperty::wxSystemColourProperty( const wxString& label, const wxString& name,
-    const wchar_t* const* labels, const long* values, wxPGChoices* choicesCache,
+    const char* const* labels, const long* values, wxPGChoices* choicesCache,
     const wxColour& value )
     : wxEnumProperty( label, name, labels, values, choicesCache )
 {
@@ -1601,7 +1601,7 @@ bool wxSystemColourProperty::DoSetAttribute( const wxString& name, wxVariant& va
 // wxColourProperty
 // -----------------------------------------------------------------------
 
-static const wchar_t* const gs_cp_es_normcolour_labels[] = {
+static const char* const gs_cp_es_normcolour_labels[] = {
     wxTRANSLATE("Black"),
     wxTRANSLATE("Maroon"),
     wxTRANSLATE("Navy"),
@@ -1684,7 +1684,7 @@ wxColourProperty::wxColourProperty( const wxString& label,
     if ( wxTheColourDatabase )
     {
         // Extend colour database with PG-specific colours.
-        const wchar_t* const* colourLabels = gs_cp_es_normcolour_labels;
+        const char* const* colourLabels = gs_cp_es_normcolour_labels;
         for ( int i = 0; *colourLabels; colourLabels++, i++ )
         {
             // Don't take into account user-defined custom colour.
@@ -1759,7 +1759,7 @@ wxVariant wxColourProperty::DoTranslateVal( wxColourPropertyValue& v ) const
 #define NUM_CURSORS 28
 
 //#define wx_cp_es_syscursors_len 28
-static const wchar_t* const gs_cp_es_syscursors_labels[NUM_CURSORS+1] = {
+static const char* const gs_cp_es_syscursors_labels[NUM_CURSORS+1] = {
     /* TRANSLATORS: System cursor name */ wxTRANSLATE("Default"),
     /* TRANSLATORS: System cursor name */ wxTRANSLATE("Arrow"),
     /* TRANSLATORS: System cursor name */ wxTRANSLATE("Right Arrow"),

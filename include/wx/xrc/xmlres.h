@@ -239,13 +239,9 @@ public:
     // with a number. If value_if_not_found == wxID_NONE, the number is obtained via
     // wxWindow::NewControlId(). Otherwise value_if_not_found is used.
     // Macro XRCID(name) is provided for convenient use in event tables.
-#ifndef wxNO_UNSAFE_WXSTRING_CONV2
     static int GetXRCID(const wxString& str_id, int value_if_not_found = wxID_NONE)
         { return DoGetXRCID(str_id.mb_str(), value_if_not_found); }
-#else // wxNO_UNSAFE_WXSTRING_CONV2
-    static int GetXRCID(const char *str_id, int value_if_not_found = wxID_NONE)
-        { return DoGetXRCID(str_id, value_if_not_found); }
-#endif // wxNO_UNSAFE_WXSTRING_CONV2
+
     // version for internal use only
     static int DoGetXRCID(const char *str_id, int value_if_not_found = wxID_NONE);
 

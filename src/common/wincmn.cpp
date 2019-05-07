@@ -90,7 +90,7 @@ WXDLLIMPEXP_DATA_CORE(wxWindowList) wxTopLevelWindows;
 wxMenu *wxCurrentPopupMenu = NULL;
 #endif // wxUSE_MENUS
 
-extern WXDLLEXPORT_DATA(const wchar_t) wxPanelNameStr[] = wxT("panel");
+extern WXDLLEXPORT_DATA(const char) wxPanelNameStr[] = "panel";
 
 namespace wxMouseCapture
 {

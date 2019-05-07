@@ -32,7 +32,7 @@
 
 #endif
 
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxComboBoxNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxComboBoxNameStr[];
 
 class WXDLLIMPEXP_CORE wxGenericComboCtrl
     : public wxNavigationEnabled<wxComboCtrlBase>

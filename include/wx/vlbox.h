@@ -15,7 +15,7 @@
 #include "wx/bitmap.h"
 
 class WXDLLIMPEXP_FWD_CORE wxSelectionStore;
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxVListBoxNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxVListBoxNameStr[];
 
 // ----------------------------------------------------------------------------
 // wxVListBox

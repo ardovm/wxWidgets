@@ -98,7 +98,7 @@ wxCONSTRUCTOR_7( wxHyperlinkCtrl, wxWindow*, Parent, wxWindowID, Id, wxString, \
                 Label, wxString, URL, wxPoint, Position, wxSize, Size, long, WindowStyle )
 
 
-const wchar_t wxHyperlinkCtrlNameStr[] = wxT("hyperlink");
+const char wxHyperlinkCtrlNameStr[] = "hyperlink";
 
 // ----------------------------------------------------------------------------
 // wxHyperlinkCtrlBase

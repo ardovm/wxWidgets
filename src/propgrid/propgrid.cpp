@@ -150,7 +150,7 @@ void wxPropertyGrid::AutoGetTranslation ( bool ) { }
 
 // -----------------------------------------------------------------------
 
-const wchar_t wxPropertyGridNameStr[] = wxT("wxPropertyGrid");
+const char wxPropertyGridNameStr[] = "wxPropertyGrid";
 
 // -----------------------------------------------------------------------
 // Statics in one class for easy destruction.

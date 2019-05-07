@@ -42,7 +42,7 @@
 
 #include <algorithm>
 
-extern WXDLLEXPORT_DATA(const wchar_t) wxStaticTextNameStr[] = wxT("staticText");
+extern WXDLLEXPORT_DATA(const char) wxStaticTextNameStr[] = "staticText";
 
 // ----------------------------------------------------------------------------
 // XTI

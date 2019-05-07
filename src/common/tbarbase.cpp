@@ -37,7 +37,7 @@
     #include "wx/menu.h"
 #endif
 
-extern WXDLLEXPORT_DATA(const wchar_t) wxToolBarNameStr[] = wxT("toolbar");
+extern WXDLLEXPORT_DATA(const char) wxToolBarNameStr[] = "toolbar";
 
 // ----------------------------------------------------------------------------
 // wxWidgets macros

@@ -39,7 +39,7 @@
 
 #include "wx/private/markupparser.h"
 
-const wchar_t wxControlNameStr[] = wxT("control");
+const char wxControlNameStr[] = "control";
 
 // ============================================================================
 // implementation

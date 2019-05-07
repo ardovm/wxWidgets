@@ -23,7 +23,7 @@
 // Web Kit Control
 // ----------------------------------------------------------------------------
 
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxWebKitCtrlNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxWebKitCtrlNameStr[];
 
 class WXDLLIMPEXP_CORE wxWebKitCtrl : public wxControl
 {

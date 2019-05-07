@@ -21,9 +21,9 @@
 // constants
 // ----------------------------------------------------------------------------
 
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxDirDialogNameStr[];
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxDirDialogDefaultFolderStr[];
-extern WXDLLIMPEXP_DATA_CORE(const wchar_t) wxDirSelectorPromptStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxDirDialogNameStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxDirDialogDefaultFolderStr[];
+extern WXDLLIMPEXP_DATA_CORE(const char) wxDirSelectorPromptStr[];
 
 #define wxDD_CHANGE_DIR         0x0100
 #define wxDD_DIR_MUST_EXIST     0x0200

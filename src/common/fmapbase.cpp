@@ -143,7 +143,7 @@ static const wxFontEncoding gs_encodings[] =
 };
 
 // the descriptions for them
-static const wchar_t* const gs_encodingDescs[] =
+static const char* const gs_encodingDescs[] =
 {
     wxTRANSLATE( "Western European (ISO-8859-1)" ),
     wxTRANSLATE( "Central European (ISO-8859-2)" ),

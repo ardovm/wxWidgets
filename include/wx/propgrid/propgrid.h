@@ -29,7 +29,7 @@
 
 
 #ifndef SWIG
-extern WXDLLIMPEXP_DATA_PROPGRID(const wchar_t) wxPropertyGridNameStr[];
+extern WXDLLIMPEXP_DATA_PROPGRID(const char) wxPropertyGridNameStr[];
 #endif
 
 class wxPGComboBox;

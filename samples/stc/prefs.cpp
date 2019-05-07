@@ -58,19 +58,19 @@ const CommonInfo g_CommonPrefs = {
 //----------------------------------------------------------------------------
 // keywordlists
 // C++
-const wchar_t* CppWordlist1 =
-    wxT("asm auto bool break case catch char class const const_cast "
+const char* CppWordlist1 =
+    "asm auto bool break case catch char class const const_cast "
     "continue default delete do double dynamic_cast else enum explicit "
     "export extern false float for friend goto if inline int long "
     "mutable namespace new operator private protected public register "
     "reinterpret_cast return short signed sizeof static static_cast "
     "struct switch template this throw true try typedef typeid "
     "typename union unsigned using virtual void volatile wchar_t "
-    "while");
-const wchar_t* CppWordlist2 =
-    wxT("file");
-const wchar_t* CppWordlist3 =
-    wxT("a addindex addtogroup anchor arg attention author b brief bug c "
+    "while";
+const char* CppWordlist2 =
+    "file";
+const char* CppWordlist3 =
+    "a addindex addtogroup anchor arg attention author b brief bug c "
     "class code date def defgroup deprecated dontinclude e em endcode "
     "endhtmlonly endif endlatexonly endlink endverbatim enum example "
     "exception f$ f[ f] file fn hideinitializer htmlinclude "
@@ -79,28 +79,28 @@ const wchar_t* CppWordlist3 =
     "overload p page par param post pre ref relates remarks return "
     "retval sa section see showinitializer since skip skipline struct "
     "subsection test throw todo typedef union until var verbatim "
-    "verbinclude version warning weakgroup $ @ \"\" & < > # { }");
+    "verbinclude version warning weakgroup $ @ \"\" & < > # { }";
 
 // Python
-const wchar_t* PythonWordlist1 =
-    wxT("and assert break class continue def del elif else except exec "
+const char* PythonWordlist1 =
+    "and assert break class continue def del elif else except exec "
     "finally for from global if import in is lambda None not or pass "
-    "print raise return try while yield");
-const wchar_t* PythonWordlist2 =
-    wxT("ACCELERATORS ALT AUTO3STATE AUTOCHECKBOX AUTORADIOBUTTON BEGIN "
+    "print raise return try while yield";
+const char* PythonWordlist2 =
+    "ACCELERATORS ALT AUTO3STATE AUTOCHECKBOX AUTORADIOBUTTON BEGIN "
     "BITMAP BLOCK BUTTON CAPTION CHARACTERISTICS CHECKBOX CLASS "
     "COMBOBOX CONTROL CTEXT CURSOR DEFPUSHBUTTON DIALOG DIALOGEX "
     "DISCARDABLE EDITTEXT END EXSTYLE FONT GROUPBOX ICON LANGUAGE "
     "LISTBOX LTEXT MENU MENUEX MENUITEM MESSAGETABLE POPUP PUSHBUTTON "
     "RADIOBUTTON RCDATA RTEXT SCROLLBAR SEPARATOR SHIFT STATE3 "
-    "STRINGTABLE STYLE TEXTINCLUDE VALUE VERSION VERSIONINFO VIRTKEY");
+    "STRINGTABLE STYLE TEXTINCLUDE VALUE VERSION VERSIONINFO VIRTKEY";
 
 
 //----------------------------------------------------------------------------
 //! languages
 const LanguageInfo g_LanguagePrefs [] = {
     // C++
-    {wxT("C++"),
+    {"C++",
      "*.c;*.cc;*.cpp;*.cxx;*.cs;*.h;*.hh;*.hpp;*.hxx;*.sma",
      wxSTC_LEX_CPP,
      {{mySTC_TYPE_DEFAULT, NULL},
@@ -137,7 +137,7 @@ const LanguageInfo g_LanguagePrefs [] = {
       {-1, NULL}},
      mySTC_FOLD_COMMENT | mySTC_FOLD_COMPACT | mySTC_FOLD_PREPROC},
     // Python
-    {wxT("Python"),
+    {"Python",
      "*.py;*.pyw",
      wxSTC_LEX_PYTHON,
      {{mySTC_TYPE_DEFAULT, NULL},

@@ -44,8 +44,8 @@
     #define SetMinMaxPointSize(min, max)  GetPickerWidget()->GetFontData()->SetRange((min), (max))
 #endif
 
-const wchar_t wxFontPickerCtrlNameStr[] = wxT("fontpicker");
-const wchar_t wxFontPickerWidgetNameStr[] = wxT("fontpickerwidget");
+const char wxFontPickerCtrlNameStr[] = "fontpicker";
+const char wxFontPickerWidgetNameStr[] = "fontpickerwidget";
 
 wxDEFINE_EVENT(wxEVT_FONTPICKER_CHANGED, wxFontPickerEvent);
 wxIMPLEMENT_DYNAMIC_CLASS(wxFontPickerCtrl, wxPickerBase);

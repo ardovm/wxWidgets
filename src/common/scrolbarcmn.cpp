@@ -22,7 +22,7 @@
 #ifndef WX_PRECOMP
 #endif
 
-extern WXDLLEXPORT_DATA(const wchar_t) wxScrollBarNameStr[] = wxT("scrollBar");
+extern WXDLLEXPORT_DATA(const char) wxScrollBarNameStr[] = "scrollBar";
 
 // ----------------------------------------------------------------------------
 // XTI

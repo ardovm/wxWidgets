@@ -35,7 +35,7 @@
     #include "wx/access.h"
 #endif // wxUSE_ACCESSIBILITY
 
-const wchar_t wxDataViewCtrlNameStr[] = wxT("dataviewCtrl");
+const char wxDataViewCtrlNameStr[] = "dataviewCtrl";
 
 namespace
 {

@@ -43,8 +43,8 @@ wxGCC_WARNING_SUPPRESS(missing-field-initializers)
 static const struct wxKeyName
 {
     wxKeyCode code;
-    const wchar_t *name;
-    const wchar_t *display_name;
+    const char *name;
+    const char *display_name;
 } wxKeyNames[] =
 {
     { WXK_DELETE,           /*TRANSLATORS: Name of keyboard key*/ wxTRANSLATE("Delete") },
@@ -120,7 +120,7 @@ wxGCC_WARNING_RESTORE(missing-field-initializers)
 //
 // as accels can be either translated or not, check for both possibilities and
 // also compare case-insensitively as the key names case doesn't count
-static inline bool CompareAccelString(const wxString& str, const wchar_t *accel)
+static inline bool CompareAccelString(const wxString& str, const char *accel)
 {
     return str.CmpNoCase(accel) == 0
 #if wxUSE_INTL
@@ -134,7 +134,7 @@ static inline bool CompareAccelString(const wxString& str, const wchar_t *accel)
 //
 // first and last parameter specify the valid domain for "number" part
 static int IsNumberedAccelKey(const wxString& str,
-                              const wchar_t *prefix,
+                              const char *prefix,
                               wxKeyCode prefixCode,
                               unsigned first,
                               unsigned last)
