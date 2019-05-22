@@ -59,6 +59,7 @@ enum wxDialogModality
     wxDIALOG_MODALITY_APP_MODAL = 2
 };
 
+// Default name for wxDialog instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxDialogNameStr[];
 
 class WXDLLIMPEXP_CORE wxDialogBase : public wxNavigationEnabled<wxTopLevelWindow>

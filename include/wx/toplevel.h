@@ -21,7 +21,7 @@
 #include "wx/iconbndl.h"
 #include "wx/weakref.h"
 
-// the default names for various classes
+// the default names for various classes (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxFrameNameStr[];
 
 // ----------------------------------------------------------------------------
@@ -391,7 +391,7 @@ protected:
                    const wxPoint& pos = wxDefaultPosition,
                    const wxSize& size = wxDefaultSize,
                    long style = wxDEFAULT_FRAME_STYLE,
-                   const wxString& name = wxString(wxFrameNameStr, wxConvLibc))
+                   const wxString& name = wxASCII_STR(wxFrameNameStr))
             : wxTopLevelWindowNative(parent, winid, title,
                                      pos, size, style, name)
         {

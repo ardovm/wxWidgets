@@ -31,6 +31,7 @@ class WXDLLIMPEXP_FWD_CORE wxItemContainer;
 class WXDLLIMPEXP_FWD_CORE wxDC;
 #endif
 
+// Default name for wxBitmapComboBox instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxBitmapComboBoxNameStr[];
 
 

@@ -59,6 +59,7 @@ class WXDLLIMPEXP_FWD_CORE wxDataViewModelNotifier;
 class WXDLLIMPEXP_FWD_CORE wxDataViewCtrlAccessible;
 #endif // wxUSE_ACCESSIBILITY
 
+// Default name for wxDataView instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxDataViewCtrlNameStr[];
 
 // ----------------------------------------------------------------------------

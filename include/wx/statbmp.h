@@ -19,6 +19,7 @@
 #include "wx/bitmap.h"
 #include "wx/icon.h"
 
+// Default name for wxStaticBitmap instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxStaticBitmapNameStr[];
 
 // a control showing an icon or a bitmap

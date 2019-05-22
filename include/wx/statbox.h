@@ -18,6 +18,7 @@
 #include "wx/control.h"
 #include "wx/containr.h"
 
+// Default name for wxStaticBox instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxStaticBoxNameStr[];
 
 // ----------------------------------------------------------------------------

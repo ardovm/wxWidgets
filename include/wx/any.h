@@ -499,7 +499,7 @@ extern WXDLLIMPEXP_BASE bool wxAnyConvertString(const wxString& value,
                                                 wxAnyValueBuffer& dst);
 
 WX_ANY_DEFINE_CONVERTIBLE_TYPE_BASE(wxString, wxString, wxAnyConvertString)
-#ifndef wxNO_UNSAFE_WXSTRING_CONV2
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 WX_ANY_DEFINE_CONVERTIBLE_TYPE(const char*, ConstCharPtr,
                                wxAnyConvertString, wxString)
 #endif
@@ -885,10 +885,10 @@ public:
         return value == value2;
     }
 
-#ifndef wxNO_UNSAFE_WXSTRING_CONV2
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
     bool operator==(const char* value) const
         { return (*this) == wxString(value); }
-#endif // wxNO_UNSAFE_WXSTRING_CONV2
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
     bool operator==(const wchar_t* value) const
         { return (*this) == wxString(value); }
 

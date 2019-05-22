@@ -19,6 +19,7 @@
 // styles with wxComboBox without explicitly including it in the user code.
 #include "wx/textctrl.h"
 
+// Default name for wxComboBox instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxComboBoxNameStr[];
 
 // ----------------------------------------------------------------------------

@@ -27,8 +27,8 @@ class wxArtProviderModule;
 typedef wxString wxArtClient;
 typedef wxString wxArtID;
 
-#define wxART_MAKE_CLIENT_ID_FROM_STR(id)  ((id) + "_C")
-#define wxART_MAKE_CLIENT_ID(id)           wxT(#id "_C")
+#define wxART_MAKE_CLIENT_ID_FROM_STR(id)  ((id) + wxS("_C"))
+#define wxART_MAKE_CLIENT_ID(id)           wxS(#id "_C")
 #define wxART_MAKE_ART_ID_FROM_STR(id)     (id)
 #define wxART_MAKE_ART_ID(id)              (#id)
 

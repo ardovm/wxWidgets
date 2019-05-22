@@ -46,6 +46,7 @@ typedef long wxTextCoord;
 // constants
 // ----------------------------------------------------------------------------
 
+// Default name for wxTextCtrl instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxTextCtrlNameStr[];
 
 // this is intentionally not enum to avoid warning fixes with

@@ -53,6 +53,7 @@ enum
 
 #define wxFD_DEFAULT_STYLE      wxFD_OPEN
 
+// Defaults for various strings (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxFileDialogNameStr[];
 extern WXDLLIMPEXP_DATA_CORE(const char) wxFileSelectorPromptStr[];
 extern WXDLLIMPEXP_DATA_CORE(const char) wxFileSelectorDefaultWildcardStr[];
@@ -67,14 +68,14 @@ public:
     wxFileDialogBase () { Init(); }
 
     wxFileDialogBase(wxWindow *parent,
-                     const wxString& message = wxString(wxFileSelectorPromptStr, wxConvLibc),
+                     const wxString& message = wxASCII_STR(wxFileSelectorPromptStr),
                      const wxString& defaultDir = wxEmptyString,
                      const wxString& defaultFile = wxEmptyString,
-                     const wxString& wildCard = wxString(wxFileSelectorDefaultWildcardStr, wxConvLibc),
+                     const wxString& wildCard = wxASCII_STR(wxFileSelectorDefaultWildcardStr),
                      long style = wxFD_DEFAULT_STYLE,
                      const wxPoint& pos = wxDefaultPosition,
                      const wxSize& sz = wxDefaultSize,
-                     const wxString& name = wxString(wxFileDialogNameStr, wxConvLibc))
+                     const wxString& name = wxASCII_STR(wxFileDialogNameStr))
     {
         Init();
         Create(parent, message, defaultDir, defaultFile, wildCard, style, pos, sz, name);
@@ -84,14 +85,14 @@ public:
 
 
     bool Create(wxWindow *parent,
-                const wxString& message = wxString(wxFileSelectorPromptStr, wxConvLibc),
+                const wxString& message = wxASCII_STR(wxFileSelectorPromptStr),
                 const wxString& defaultDir = wxEmptyString,
                 const wxString& defaultFile = wxEmptyString,
-                const wxString& wildCard = wxString(wxFileSelectorDefaultWildcardStr, wxConvLibc),
+                const wxString& wildCard = wxASCII_STR(wxFileSelectorDefaultWildcardStr),
                 long style = wxFD_DEFAULT_STYLE,
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& sz = wxDefaultSize,
-                const wxString& name = wxString(wxFileDialogNameStr, wxConvLibc));
+                const wxString& name = wxASCII_STR(wxFileDialogNameStr));
 
     bool HasFdFlag(int flag) const { return HasFlag(flag); }
 
@@ -187,22 +188,22 @@ private:
 
 // File selector - backward compatibility
 WXDLLIMPEXP_CORE wxString
-wxFileSelector(const wxString& message = wxString(wxFileSelectorPromptStr, wxConvLibc),
+wxFileSelector(const wxString& message = wxASCII_STR(wxFileSelectorPromptStr),
                const wxString& default_path = wxEmptyString,
                const wxString& default_filename = wxEmptyString,
                const wxString& default_extension = wxEmptyString,
-               const wxString& wildcard = wxString(wxFileSelectorDefaultWildcardStr, wxConvLibc),
+               const wxString& wildcard = wxASCII_STR(wxFileSelectorDefaultWildcardStr),
                int flags = 0,
                wxWindow *parent = NULL,
                int x = wxDefaultCoord, int y = wxDefaultCoord);
 
 // An extended version of wxFileSelector
 WXDLLIMPEXP_CORE wxString
-wxFileSelectorEx(const wxString& message = wxString(wxFileSelectorPromptStr, wxConvLibc),
+wxFileSelectorEx(const wxString& message = wxASCII_STR(wxFileSelectorPromptStr),
                  const wxString& default_path = wxEmptyString,
                  const wxString& default_filename = wxEmptyString,
                  int *indexDefaultExtension = NULL,
-                 const wxString& wildcard = wxString(wxFileSelectorDefaultWildcardStr, wxConvLibc),
+                 const wxString& wildcard = wxASCII_STR(wxFileSelectorDefaultWildcardStr),
                  int flags = 0,
                  wxWindow *parent = NULL,
                  int x = wxDefaultCoord, int y = wxDefaultCoord);

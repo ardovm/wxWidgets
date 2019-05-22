@@ -102,8 +102,10 @@ struct _SYSTEMTIME;
 // wxInvalidDateTime)
 class WXDLLIMPEXP_FWD_BASE wxDateTime;
 
+// Default format strings (ASCII)
 extern WXDLLIMPEXP_DATA_BASE(const char) wxDefaultDateTimeFormat[];
 extern WXDLLIMPEXP_DATA_BASE(const char) wxDefaultTimeSpanFormat[];
+// Empty wxDateTime object
 extern WXDLLIMPEXP_DATA_BASE(const wxDateTime) wxDefaultDateTime;
 
 #define wxInvalidDateTime wxDefaultDateTime
@@ -955,7 +957,7 @@ public:
     bool ParseFormat(const wxString& date,
                      wxString::const_iterator *end)
     {
-        return ParseFormat(date, wxString(wxDefaultDateTimeFormat, wxConvLibc), wxDefaultDateTime, end);
+        return ParseFormat(date, wxASCII_STR(wxDefaultDateTimeFormat), wxDefaultDateTime, end);
     }
 
         // parse a string containing date, time or both in ISO 8601 format
@@ -1000,7 +1002,7 @@ public:
         // argument corresponds to the preferred date and time representation
         // for the current locale) and returns the string containing the
         // resulting text representation
-    wxString Format(const wxString& format = wxString(wxDefaultDateTimeFormat, wxConvLibc),
+    wxString Format(const wxString& format = wxASCII_STR(wxDefaultDateTimeFormat),
                     const TimeZone& tz = Local) const;
         // preferred date representation for the current locale
     wxString FormatDate() const { return Format(wxS("%x")); }
@@ -1035,7 +1037,7 @@ public:
     }
 
     wxAnyStrPtr ParseFormat(const wxString& date,
-                            const wxString& format = wxString(wxDefaultDateTimeFormat, wxConvLibc),
+                            const wxString& format = wxASCII_STR(wxDefaultDateTimeFormat),
                             const wxDateTime& dateDef = wxDefaultDateTime)
     {
         wxString::const_iterator end;
@@ -1084,14 +1086,14 @@ public:
     const wchar_t* ParseRfc822Date(const wchar_t* date);
 
     void ParseFormat(const wxCStrData& date,
-                     const wxString& format = wxString(wxDefaultDateTimeFormat, wxConvLibc),
+                     const wxString& format = wxASCII_STR(wxDefaultDateTimeFormat),
                      const wxDateTime& dateDef = wxDefaultDateTime)
         { ParseFormat(wxString(date), format, dateDef); }
     const char* ParseFormat(const char* date,
-                            const wxString& format = wxString(wxDefaultDateTimeFormat, wxConvLibc),
+                            const wxString& format = wxASCII_STR(wxDefaultDateTimeFormat),
                             const wxDateTime& dateDef = wxDefaultDateTime);
     const wchar_t* ParseFormat(const wchar_t* date,
-                               const wxString& format = wxString(wxDefaultDateTimeFormat, wxConvLibc),
+                               const wxString& format = wxASCII_STR(wxDefaultDateTimeFormat),
                                const wxDateTime& dateDef = wxDefaultDateTime);
 
     void ParseDateTime(const wxCStrData& datetime)
@@ -1337,7 +1339,7 @@ public:
         // resulting text representation. Notice that only some of format
         // specifiers valid for wxDateTime are valid for wxTimeSpan: hours,
         // minutes and seconds make sense, but not "PM/AM" string for example.
-    wxString Format(const wxString& format = wxString(wxDefaultTimeSpanFormat, wxConvLibc)) const;
+    wxString Format(const wxString& format = wxASCII_STR(wxDefaultTimeSpanFormat)) const;
 
     // implementation
     // ------------------------------------------------------------------------

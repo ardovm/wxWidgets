@@ -205,7 +205,7 @@ public:
     const char *func;
 
     // the name of the component which generated this message, may be NULL if
-    // not set (i.e. wxLOG_COMPONENT not defined)
+    // not set (i.e. wxLOG_COMPONENT not defined). It must be in ASCII
     const char *component;
 
     // time of record generation
@@ -288,7 +288,7 @@ private:
     ExtraData *m_data;
 };
 
-#define wxLOG_KEY_TRACE_MASK wxT("wx.trace_mask")
+#define wxLOG_KEY_TRACE_MASK wxS("wx.trace_mask")
 
 // ----------------------------------------------------------------------------
 // log record: a unit of log output
@@ -928,7 +928,7 @@ public:
     {
         // remember that fatal errors can't be disabled
         if ( m_level == wxLOG_FatalError ||
-                wxLog::IsLevelEnabled(m_level, wxString(m_info.component, wxConvLibc)) )
+                wxLog::IsLevelEnabled(m_level, wxASCII_STR(m_info.component)) )
             DoCallOnLog(format, argptr);
     }
 
@@ -1057,7 +1057,7 @@ private:
 
     void DoLogAtLevel(wxLogLevel level, const wxChar *format, ...)
     {
-        if ( !wxLog::IsLevelEnabled(level, wxString(m_info.component, wxConvLibc)) )
+        if ( !wxLog::IsLevelEnabled(level, wxASCII_STR(m_info.component)) )
             return;
 
         va_list argptr;
@@ -1126,7 +1126,7 @@ private:
 
     void DoLogAtLevelUtf8(wxLogLevel level, const char *format, ...)
     {
-        if ( !wxLog::IsLevelEnabled(level, wxString(m_info.component, wxConvLibc)) )
+        if ( !wxLog::IsLevelEnabled(level, wxASCII_STR(m_info.component)) )
             return;
 
         va_list argptr;

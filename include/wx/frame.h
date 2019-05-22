@@ -18,7 +18,7 @@
 #include "wx/toplevel.h"      // the base class
 #include "wx/statusbr.h"
 
-// the default names for various classs
+// the default names for various classes (ASCII).
 extern WXDLLIMPEXP_DATA_CORE(const char) wxStatusLineNameStr[];
 extern WXDLLIMPEXP_DATA_CORE(const char) wxToolBarNameStr[];
 
@@ -64,7 +64,7 @@ public:
                  const wxPoint& pos = wxDefaultPosition,
                  const wxSize& size = wxDefaultSize,
                  long style = wxDEFAULT_FRAME_STYLE,
-                 const wxString& name = wxString(wxFrameNameStr, wxConvLibc));
+                 const wxString& name = wxASCII_STR(wxFrameNameStr));
 
     // frame state
     // -----------
@@ -106,7 +106,7 @@ public:
     virtual wxStatusBar* CreateStatusBar(int number = 1,
                                          long style = wxSTB_DEFAULT_STYLE,
                                          wxWindowID winid = 0,
-                                         const wxString& name = wxString(wxStatusLineNameStr, wxConvLibc));
+                                         const wxString& name = wxASCII_STR(wxStatusLineNameStr));
     // return a new status bar
     virtual wxStatusBar *OnCreateStatusBar(int number,
                                            long style,
@@ -136,7 +136,7 @@ public:
     // create main toolbar bycalling OnCreateToolBar()
     virtual wxToolBar* CreateToolBar(long style = -1,
                                      wxWindowID winid = wxID_ANY,
-                                     const wxString& name = wxString(wxToolBarNameStr, wxConvLibc));
+                                     const wxString& name = wxASCII_STR(wxToolBarNameStr));
     // return a new toolbar
     virtual wxToolBar *OnCreateToolBar(long style,
                                        wxWindowID winid,

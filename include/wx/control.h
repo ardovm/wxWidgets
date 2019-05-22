@@ -22,6 +22,7 @@
 #include "wx/window.h"      // base class
 #include "wx/gdicmn.h"      // wxEllipsize...
 
+// Default name for wxControl instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxControlNameStr[];
 
 
@@ -42,7 +43,7 @@ public:
                 const wxSize& size = wxDefaultSize,
                 long style = 0,
                 const wxValidator& validator = wxDefaultValidator,
-                const wxString& name = wxString(wxControlNameStr, wxConvLibc));
+                const wxString& name = wxASCII_STR(wxControlNameStr));
 
     // get the control alignment (left/right/centre, top/bottom/centre)
     int GetAlignment() const { return m_windowStyle & wxALIGN_MASK; }

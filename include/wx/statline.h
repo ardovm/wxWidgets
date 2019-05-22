@@ -26,7 +26,7 @@
 // global variables
 // ----------------------------------------------------------------------------
 
-// the default name for objects of class wxStaticLine
+// the default name for objects of class wxStaticLine (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxStaticLineNameStr[];
 
 // ----------------------------------------------------------------------------

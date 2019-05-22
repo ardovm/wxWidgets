@@ -21,6 +21,7 @@
 
 class WXDLLIMPEXP_FWD_CORE wxControlContainer;
 
+// Default name for panels (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxPanelNameStr[];
 
 // ----------------------------------------------------------------------------
@@ -48,7 +49,7 @@ public:
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize,
                 long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                const wxString& name = wxString(wxPanelNameStr, wxConvLibc));
+                const wxString& name = wxASCII_STR(wxPanelNameStr));
 
 
     // implementation from now on

@@ -35,7 +35,7 @@
 // --keyword="_" --keyword="wxPLURAL:1,2" options
 // to extract the strings from the sources)
 #ifndef WXINTL_NO_GETTEXT_MACRO
-    #define _(s)                               wxGetTranslation(wxT(s))
+    #define _(s)                               wxGetTranslation(wxS(s))
     #define wxPLURAL(sing, plur, n)            wxGetTranslation((sing), (plur), n)
 #endif
 
@@ -44,13 +44,13 @@
 // --keyword="wxGETTEXT_IN_CONTEXT:1c,2" --keyword="wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3"
 // options to xgettext invocation.
 #define wxGETTEXT_IN_CONTEXT(c, s) \
-    wxGetTranslation(wxT(s), wxString(), c)
+    wxGetTranslation(wxS(s), wxString(), c)
 #define wxGETTEXT_IN_CONTEXT_PLURAL(c, sing, plur, n) \
     wxGetTranslation((sing), (plur), n, wxString(), c)
 
 // another one which just marks the strings for extraction, but doesn't
 // perform the translation (use -kwxTRANSLATE with xgettext!)
-#define wxTRANSLATE(str) (str)
+#define wxTRANSLATE(str) str
 
 // ----------------------------------------------------------------------------
 // forward decls
@@ -143,7 +143,7 @@ public:
     // find best translation language for given domain
     wxString GetBestTranslation(const wxString& domain, wxLanguage msgIdLanguage);
     wxString GetBestTranslation(const wxString& domain,
-                                const wxString& msgIdLanguage = wxString("en", wxConvLibc));
+                                const wxString& msgIdLanguage = wxASCII_STR("en"));
 
     // add standard wxWidgets catalog ("wxstd")
     bool AddStdCatalog();
@@ -304,7 +304,7 @@ inline const wxString& wxGetTranslation(const wxString& str1,
     #define wxGETTEXT_IN_CONTEXT_PLURAL(c, sing, plur, n)  wxPLURAL(sing, plur, n)
 #endif
 
-#define wxTRANSLATE(str) (str)
+#define wxTRANSLATE(str) str
 
 // NB: we use a template here in order to avoid using
 //     wxLocale::GetUntranslatedString() above, which would be required if

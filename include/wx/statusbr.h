@@ -19,6 +19,7 @@
 #include "wx/list.h"
 #include "wx/dynarray.h"
 
+// Default name for wxStatusBar instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxStatusBarNameStr[];
 
 // ----------------------------------------------------------------------------

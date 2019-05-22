@@ -18,6 +18,7 @@
 #include "wx/dialog.h"
 #include "wx/stockitem.h"
 
+// Default caption (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxMessageBoxCaptionStr[];
 
 // ----------------------------------------------------------------------------
@@ -45,12 +46,12 @@ public:
         {
         }
 
-#ifndef wxNO_UNSAFE_WXSTRING_CONV2
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
         ButtonLabel(const char *label)
             : m_label(label), m_stockId(wxID_NONE)
         {
         }
-#endif // wxNO_UNSAFE_WXSTRING_CONV2
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 
         ButtonLabel(const wchar_t *label)
             : m_label(label), m_stockId(wxID_NONE)
@@ -242,7 +243,7 @@ protected:
     {
         wxString msg = m_message;
         if ( !m_extendedMessage.empty() )
-            msg << wxT("\n\n") << m_extendedMessage;
+            msg << wxS("\n\n") << m_extendedMessage;
 
         return msg;
     }
@@ -275,11 +276,11 @@ protected:
 private:
     // these functions may be overridden to provide different defaults for the
     // default button labels (this is used by wxGTK)
-    virtual wxString GetDefaultYesLabel() const { return wxGetTranslation(wxT("Yes")); }
-    virtual wxString GetDefaultNoLabel() const { return wxGetTranslation(wxT("No")); }
-    virtual wxString GetDefaultOKLabel() const { return wxGetTranslation(wxT("OK")); }
-    virtual wxString GetDefaultCancelLabel() const { return wxGetTranslation(wxT("Cancel")); }
-    virtual wxString GetDefaultHelpLabel() const { return wxGetTranslation(wxT("Help")); }
+    virtual wxString GetDefaultYesLabel() const { return wxGetTranslation(wxASCII_STR("Yes")); }
+    virtual wxString GetDefaultNoLabel() const { return wxGetTranslation(wxASCII_STR("No")); }
+    virtual wxString GetDefaultOKLabel() const { return wxGetTranslation(wxASCII_STR("OK")); }
+    virtual wxString GetDefaultCancelLabel() const { return wxGetTranslation(wxASCII_STR("Cancel")); }
+    virtual wxString GetDefaultHelpLabel() const { return wxGetTranslation(wxASCII_STR("Help")); }
 
     // labels for the buttons, initially empty meaning that the defaults should
     // be used, use GetYes/No/OK/CancelLabel() to access them
@@ -316,7 +317,7 @@ private:
 // ----------------------------------------------------------------------------
 
 int WXDLLIMPEXP_CORE wxMessageBox(const wxString& message,
-                             const wxString& caption = wxString(wxMessageBoxCaptionStr, wxConvLibc),
+                             const wxString& caption = wxASCII_STR(wxMessageBoxCaptionStr),
                              long style = wxOK | wxCENTRE,
                              wxWindow *parent = NULL,
                              int x = wxDefaultCoord, int y = wxDefaultCoord);

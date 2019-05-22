@@ -21,6 +21,7 @@
 // constants
 // ----------------------------------------------------------------------------
 
+// Default name for wxListCtrl instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxListCtrlNameStr[];
 
 // ----------------------------------------------------------------------------
@@ -49,7 +50,7 @@ public:
                 const wxSize& size = wxDefaultSize,
                 long style = wxLC_REPORT,
                 const wxValidator& validator = wxDefaultValidator,
-                const wxString &name = wxString(wxListCtrlNameStr, wxConvLibc))
+                const wxString &name = wxASCII_STR(wxListCtrlNameStr))
     {
         Create(parent, winid, pos, size, style, validator, name);
     }
