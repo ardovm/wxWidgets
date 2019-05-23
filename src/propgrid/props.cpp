@@ -1913,43 +1913,16 @@ bool wxDirProperty::DoSetAttribute( const wxString& name, wxVariant& value )
 
 bool wxPGFileDialogAdapter::DoShowDialog( wxPropertyGrid* propGrid, wxPGProperty* property )
 {
-    wxString path;
-    int indFilter = -1;
+    wxFileProperty* prop = wxDynamicCast(property, wxFileProperty);
+    wxCHECK_MSG( prop, false, "Function called for incompatible property" );
 
-    wxFileProperty* fileProp = wxDynamicCast(property, wxFileProperty);
-    if ( fileProp )
+    wxString value = prop->GetValueAsString(0);
+    if ( prop->DisplayEditorDialog(propGrid, value) )
     {
-        wxFileName filename = fileProp->GetValue().GetString();
-        path = filename.GetPath();
-        indFilter = fileProp->m_indFilter;
-
-        if ( path.empty() && !fileProp->m_basePath.empty() )
-            path = fileProp->m_basePath;
-    }
-    else
-    {
-        wxFileName fn(property->GetValue().GetString());
-        path = fn.GetPath();
-    }
-
-    wxFileDialog dlg( propGrid->GetPanel(),
-                      property->GetAttribute(wxPG_FILE_DIALOG_TITLE, _("Choose a file")),
-                      property->GetAttribute(wxPG_FILE_INITIAL_PATH, path),
-                      wxEmptyString,
-                      property->GetAttribute(wxPG_FILE_WILDCARD, wxALL_FILES),
-                      property->GetAttributeAsLong(wxPG_FILE_DIALOG_STYLE, 0),
-                      wxDefaultPosition );
-
-    if ( indFilter >= 0 )
-        dlg.SetFilterIndex( indFilter );
-
-    if ( dlg.ShowModal() == wxID_OK )
-    {
-        if ( fileProp )
-            fileProp->m_indFilter = dlg.GetFilterIndex();
-        SetValue( dlg.GetPath() );
+        SetValue(value);
         return true;
     }
+
     return false;
 }
 
@@ -1964,7 +1937,8 @@ wxFileProperty::wxFileProperty( const wxString& label, const wxString& name,
 {
     m_flags |= wxPG_PROP_SHOW_FULL_FILENAME;
     m_indFilter = -1;
-    SetAttribute( wxPG_FILE_WILDCARD, wxALL_FILES);
+    m_dlgStyle = 0;
+    m_wildcard = wxALL_FILES;
 
     SetValue(value);
 }
@@ -2117,8 +2091,6 @@ bool wxFileProperty::StringToValue( wxVariant& variant, const wxString& text, in
 
 bool wxFileProperty::DoSetAttribute( const wxString& name, wxVariant& value )
 {
-    // Return false on some occasions to make sure those attributes will get
-    // stored in m_attributes.
     if ( name == wxPG_FILE_SHOW_FULL_PATH )
     {
         ChangeFlag(wxPG_PROP_SHOW_FULL_FILENAME, value.GetBool());
@@ -2127,7 +2099,7 @@ bool wxFileProperty::DoSetAttribute( const wxString& name, wxVariant& value )
     else if ( name == wxPG_FILE_WILDCARD )
     {
         m_wildcard = value.GetString();
-        return false;
+        return true;
     }
     else if ( name == wxPG_FILE_SHOW_RELATIVE_PATH )
     {
@@ -2135,7 +2107,7 @@ bool wxFileProperty::DoSetAttribute( const wxString& name, wxVariant& value )
 
         // Make sure wxPG_FILE_SHOW_FULL_PATH is also set
         m_flags |= wxPG_PROP_SHOW_FULL_FILENAME;
-        return false;
+        return true;
     }
     else if ( name == wxPG_FILE_INITIAL_PATH )
     {
@@ -2147,7 +2119,40 @@ bool wxFileProperty::DoSetAttribute( const wxString& name, wxVariant& value )
         m_dlgTitle = value.GetString();
         return true;
     }
+    else if ( name == wxPG_FILE_DIALOG_STYLE )
+    {
+        m_dlgStyle = value.GetLong();
+        return true;
+    }
     return wxPGProperty::DoSetAttribute(name, value);
+}
+
+bool wxFileProperty::DisplayEditorDialog(wxPropertyGrid* propGrid, wxString& value)
+{
+    wxFileName filename = value;
+    wxString path = filename.GetPath();
+
+    if ( path.empty() && !m_basePath.empty() )
+        path = m_basePath;
+
+    wxFileDialog dlg(propGrid->GetPanel(),
+        m_dlgTitle.empty() ? _("Choose a file") : m_dlgTitle,
+        m_initialPath.empty() ? path : m_initialPath,
+        value,
+        m_wildcard.empty() ? wxALL_FILES : m_wildcard,
+        m_dlgStyle,
+        wxDefaultPosition);
+
+    if ( m_indFilter >= 0 )
+        dlg.SetFilterIndex(m_indFilter);
+
+    if ( dlg.ShowModal() == wxID_OK )
+    {
+        m_indFilter = dlg.GetFilterIndex();
+        value = dlg.GetPath();
+        return true;
+    }
+    return false;
 }
 
 // -----------------------------------------------------------------------
