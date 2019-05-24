@@ -28,7 +28,11 @@ typedef wxString wxArtClient;
 typedef wxString wxArtID;
 
 #define wxART_MAKE_CLIENT_ID_FROM_STR(id)  ((id) + wxS("_C"))
-#define wxART_MAKE_CLIENT_ID(id)           wxS(#id "_C")
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
+#define wxART_MAKE_CLIENT_ID(id)           (#id "_C")
+#else
+#define wxART_MAKE_CLIENT_ID(id)           wxS(#id) wxS("_C")
+#endif
 #define wxART_MAKE_ART_ID_FROM_STR(id)     (id)
 #define wxART_MAKE_ART_ID(id)              (#id)
 
