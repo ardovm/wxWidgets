@@ -35,7 +35,11 @@
 // --keyword="_" --keyword="wxPLURAL:1,2" options
 // to extract the strings from the sources)
 #ifndef WXINTL_NO_GETTEXT_MACRO
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
+    #define _(s)                               wxGetTranslation((s))
+#else
     #define _(s)                               wxGetTranslation(wxS(s))
+#endif
     #define wxPLURAL(sing, plur, n)            wxGetTranslation((sing), (plur), n)
 #endif
 
@@ -43,8 +47,13 @@
 // them, you need to also add
 // --keyword="wxGETTEXT_IN_CONTEXT:1c,2" --keyword="wxGETTEXT_IN_CONTEXT_PLURAL:1c,2,3"
 // options to xgettext invocation.
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
+#define wxGETTEXT_IN_CONTEXT(c, s) \
+    wxGetTranslation((s), wxString(), c)
+#else
 #define wxGETTEXT_IN_CONTEXT(c, s) \
     wxGetTranslation(wxS(s), wxString(), c)
+#endif
 #define wxGETTEXT_IN_CONTEXT_PLURAL(c, sing, plur, n) \
     wxGetTranslation((sing), (plur), n, wxString(), c)
 
@@ -297,7 +306,11 @@ inline const wxString& wxGetTranslation(const wxString& str1,
 
 #if !defined(WXINTL_NO_GETTEXT_MACRO)
     #if !defined(_)
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
         #define _(s)                 (s)
+#else
+        #define _(s)                 wxS(s)
+#endif
     #endif
     #define wxPLURAL(sing, plur, n)  ((n) == 1 ? (sing) : (plur))
     #define wxGETTEXT_IN_CONTEXT(c, s)                     (s)
