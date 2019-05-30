@@ -404,14 +404,8 @@ private:
   static wxScopedCharBuffer ImplStr(const char* str,
                                     const wxMBConv& conv wxSTRING_DEFAULT_CONV_ARG)
     { return ConvertStr(str, npos, conv).data; }
-#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
   static SubstrBufFromMB ImplStr(const char* str, size_t n,
                                  const wxMBConv& conv wxSTRING_DEFAULT_CONV_ARG)
-#else
-  // conv must be explicit
-  static SubstrBufFromMB ImplStr(const char* str, size_t n,
-                                 const wxMBConv& conv)
-#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
     { return ConvertStr(str, n, conv); }
 
   static wxScopedCharBuffer ImplStr(const wchar_t* str)
@@ -1279,12 +1273,7 @@ public:
   #else
     // wxStringImpl is either not std::string or needs conversion
     #define wxStringToStdStringRetType std::string
-#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
     std::string ToStdString(const wxMBConv& conv wxSTRING_DEFAULT_CONV_ARG) const
-#else
-    // conv must be explicit
-    std::string ToStdString(const wxMBConv& conv) const
-#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
     {
         wxScopedCharBuffer buf(mb_str(conv));
         return std::string(buf.data(), buf.length());
@@ -1574,12 +1563,7 @@ public:
     // conversion to *non-const* multibyte or widestring buffer; modifying
     // returned buffer won't affect the string, these methods are only useful
     // for passing values to const-incorrect functions
-#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
     wxWritableCharBuffer char_str(const wxMBConv& conv wxSTRING_DEFAULT_CONV_ARG) const
-#else
-    // conv must be explicit
-    wxWritableCharBuffer char_str(const wxMBConv& conv) const
-#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
         { return mb_str(conv); }
     wxWritableWCharBuffer wchar_str() const { return wc_str(); }
 
@@ -1789,12 +1773,7 @@ public:
         return AsCharBuf(conv);
     }
 #else // !wxUSE_UTF8_LOCALE_ONLY
-#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
     const wxScopedCharBuffer mb_str(const wxMBConv& conv wxSTRING_DEFAULT_CONV_ARG) const
-#else
-    // conv must be explicit
-    const wxScopedCharBuffer mb_str(const wxMBConv& conv) const
-#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
     {
         return AsCharBuf(conv);
     }

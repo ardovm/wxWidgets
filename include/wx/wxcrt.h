@@ -227,10 +227,12 @@ inline wchar_t *wxStrcpy(wchar_t *dest, const wxCStrData& src)
     { return wxCRT_StrcpyW(dest, src.AsWCharBuf()); }
 inline wchar_t *wxStrcpy(wchar_t *dest, const wxScopedWCharBuffer& src)
     { return wxCRT_StrcpyW(dest, src.data()); }
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 inline char *wxStrcpy(char *dest, const wchar_t *src)
     { return wxCRT_StrcpyA(dest, wxConvLibc.cWC2MB(src)); }
 inline wchar_t *wxStrcpy(wchar_t *dest, const char *src)
     { return wxCRT_StrcpyW(dest, wxConvLibc.cMB2WC(src)); }
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 
 inline char *wxStrncpy(char *dest, const char *src, size_t n)
     { return wxCRT_StrncpyA(dest, src, n); }
@@ -250,10 +252,12 @@ inline wchar_t *wxStrncpy(wchar_t *dest, const wxCStrData& src, size_t n)
     { return wxCRT_StrncpyW(dest, src.AsWCharBuf(), n); }
 inline wchar_t *wxStrncpy(wchar_t *dest, const wxScopedWCharBuffer& src, size_t n)
     { return wxCRT_StrncpyW(dest, src.data(), n); }
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 inline char *wxStrncpy(char *dest, const wchar_t *src, size_t n)
     { return wxCRT_StrncpyA(dest, wxConvLibc.cWC2MB(src), n); }
 inline wchar_t *wxStrncpy(wchar_t *dest, const char *src, size_t n)
     { return wxCRT_StrncpyW(dest, wxConvLibc.cMB2WC(src), n); }
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 
 // this is a function new in 2.9 so we don't care about backwards compatibility and
 // so don't need to support wchar_t/char overloads
@@ -303,10 +307,12 @@ inline wchar_t *wxStrcat(wchar_t *dest, const wxCStrData& src)
     { return wxCRT_StrcatW(dest, src.AsWCharBuf()); }
 inline wchar_t *wxStrcat(wchar_t *dest, const wxScopedWCharBuffer& src)
     { return wxCRT_StrcatW(dest, src.data()); }
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 inline char *wxStrcat(char *dest, const wchar_t *src)
     { return wxCRT_StrcatA(dest, wxConvLibc.cWC2MB(src)); }
 inline wchar_t *wxStrcat(wchar_t *dest, const char *src)
     { return wxCRT_StrcatW(dest, wxConvLibc.cMB2WC(src)); }
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 
 inline char *wxStrncat(char *dest, const char *src, size_t n)
     { return wxCRT_StrncatA(dest, src, n); }
@@ -326,10 +332,12 @@ inline wchar_t *wxStrncat(wchar_t *dest, const wxCStrData& src, size_t n)
     { return wxCRT_StrncatW(dest, src.AsWCharBuf(), n); }
 inline wchar_t *wxStrncat(wchar_t *dest, const wxScopedWCharBuffer& src, size_t n)
     { return wxCRT_StrncatW(dest, src.data(), n); }
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 inline char *wxStrncat(char *dest, const wchar_t *src, size_t n)
     { return wxCRT_StrncatA(dest, wxConvLibc.cWC2MB(src), n); }
 inline wchar_t *wxStrncat(wchar_t *dest, const char *src, size_t n)
     { return wxCRT_StrncatW(dest, wxConvLibc.cMB2WC(src), n); }
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 
 
 #define WX_STR_DECL(name, T1, T2)  name(T1 s1, T2 s2)
@@ -898,8 +906,12 @@ inline int wxUngetc(int c, FILE *stream) { return wxCRT_UngetcA(c, stream); }
 
 #ifdef wxCRT_AtoiW
 inline int wxAtoi(const wxString& str) { return wxCRT_AtoiW(str.wc_str()); }
-#elif !defined wxNO_IMPLICIT_WXSTRING_ENCODING
-inline int wxAtoi(const wxString& str) { return wxCRT_AtoiA(str.mb_str()); }
+#else
+// We only use wxConvLibc here because if the string is non-ASCII,
+// then it's fine for the conversion to yield empty string, as atoi()
+// will return 0 for it, which is the correct thing to do in this
+// case.
+inline int wxAtoi(const wxString& str) { return wxCRT_AtoiA(str.mb_str(wxConvLibc)); }
 #endif
 
 #ifdef wxCRT_AtolW
