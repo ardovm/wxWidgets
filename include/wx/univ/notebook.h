@@ -41,7 +41,7 @@ public:
                const wxPoint& pos = wxDefaultPosition,
                const wxSize& size = wxDefaultSize,
                long style = 0,
-               const wxString& name = wxASCII_STR(NotebookNameStr))
+               const wxString& name = wxASCII_STR(wxNotebookNameStr))
     {
         Init();
 
