@@ -20,7 +20,7 @@ public:
                 long style = wxDD_DEFAULT_STYLE,
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize,
-                const wxString& name = wxDirDialogNameStr);
+                const wxString& name = wxASCII_STR(wxDirDialogNameStr));
 
     void SetPath(const wxString& path) wxOVERRIDE;
 
