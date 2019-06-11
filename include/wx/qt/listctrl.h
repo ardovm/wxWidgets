@@ -26,7 +26,7 @@ public:
                const wxSize& size = wxDefaultSize,
                long style = wxLC_ICON,
                const wxValidator& validator = wxDefaultValidator,
-               const wxString& name = wxListCtrlNameStr);
+               const wxString& name = wxASCII_STR(wxListCtrlNameStr));
 
     bool Create(wxWindow *parent,
                 wxWindowID id = wxID_ANY,
@@ -34,7 +34,7 @@ public:
                 const wxSize& size = wxDefaultSize,
                 long style = wxLC_ICON,
                 const wxValidator& validator = wxDefaultValidator,
-                const wxString& name = wxListCtrlNameStr);
+                const wxString& name = wxASCII_STR(wxListCtrlNameStr));
 
     virtual ~wxListCtrl();
 

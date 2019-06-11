@@ -25,7 +25,7 @@ public:
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxSP_VERTICAL,
-        const wxString& name = "wxSpinButton")
+        const wxString& name = wxS("wxSpinButton"))
         : m_up( 0 ),
         m_down( 0 ),
         m_pos( 0 )
@@ -39,7 +39,7 @@ public:
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
         long style = wxSP_VERTICAL,
-        const wxString& name = "wxSpinButton");
+        const wxString& name = wxS("wxSpinButton"));
 
     // accessors
     int GetValue() const;

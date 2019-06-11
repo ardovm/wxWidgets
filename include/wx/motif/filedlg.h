@@ -33,7 +33,7 @@ public:
                  long style = wxFD_DEFAULT_STYLE,
                  const wxPoint& pos = wxDefaultPosition,
                  const wxSize& sz = wxDefaultSize,
-                 const wxString& name = wxFileDialogNameStr);
+                 const wxString& name = wxASCII_STR(wxFileDialogNameStr));
 
     virtual int ShowModal();
 };
