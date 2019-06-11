@@ -902,28 +902,29 @@ inline int wxUngetc(int c, FILE *stream) { return wxCRT_UngetcA(c, stream); }
 
 // ----------------------------------------------------------------------------
 //                             stdlib.h functions
+//
+// We only use wxConvLibc here because if the string is non-ASCII,
+// then it's fine for the conversion to yield empty string, as atoi()
+// will return 0 for it, which is the correct thing to do in this
+// case.
 // ----------------------------------------------------------------------------
 
 #ifdef wxCRT_AtoiW
 inline int wxAtoi(const wxString& str) { return wxCRT_AtoiW(str.wc_str()); }
 #else
-// We only use wxConvLibc here because if the string is non-ASCII,
-// then it's fine for the conversion to yield empty string, as atoi()
-// will return 0 for it, which is the correct thing to do in this
-// case.
 inline int wxAtoi(const wxString& str) { return wxCRT_AtoiA(str.mb_str(wxConvLibc)); }
 #endif
 
 #ifdef wxCRT_AtolW
 inline long wxAtol(const wxString& str) { return wxCRT_AtolW(str.wc_str()); }
 #else
-inline long wxAtol(const wxString& str) { return wxCRT_AtolA(str.mb_str()); }
+inline long wxAtol(const wxString& str) { return wxCRT_AtolA(str.mb_str(wxConvLibc)); }
 #endif
 
 #ifdef wxCRT_AtofW
 inline double wxAtof(const wxString& str) { return wxCRT_AtofW(str.wc_str()); }
 #else
-inline double wxAtof(const wxString& str) { return wxCRT_AtofA(str.mb_str()); }
+inline double wxAtof(const wxString& str) { return wxCRT_AtofA(str.mb_str(wxConvLibc)); }
 #endif
 
 inline double wxStrtod(const char *nptr, char **endptr)

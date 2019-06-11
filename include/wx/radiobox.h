@@ -27,6 +27,7 @@ WX_DEFINE_EXPORTED_ARRAY_PTR(wxToolTip *, wxToolTipArray);
 
 #endif // wxUSE_TOOLTIPS
 
+// Default name for wxRadioBox instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxRadioBoxNameStr[];
 
 // ----------------------------------------------------------------------------

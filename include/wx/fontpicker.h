@@ -21,6 +21,7 @@
 
 class WXDLLIMPEXP_FWD_CORE wxFontPickerEvent;
 
+// Default names (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxFontPickerWidgetNameStr[];
 extern WXDLLIMPEXP_DATA_CORE(const char) wxFontPickerCtrlNameStr[];
 
@@ -117,7 +118,7 @@ public:
                      const wxSize& size = wxDefaultSize,
                      long style = wxFNTP_DEFAULT_STYLE,
                      const wxValidator& validator = wxDefaultValidator,
-                     const wxString& name = wxFontPickerCtrlNameStr)
+                     const wxString& name = wxASCII_STR(wxFontPickerCtrlNameStr))
         : m_nMinPointSize(wxFNTP_MINPOINT_SIZE), m_nMaxPointSize(wxFNTP_MAXPOINT_SIZE)
     {
         Create(parent, id, initial, pos, size, style, validator, name);
@@ -130,7 +131,7 @@ public:
                 const wxSize& size = wxDefaultSize,
                 long style = wxFNTP_DEFAULT_STYLE,
                 const wxValidator& validator = wxDefaultValidator,
-                const wxString& name = wxFontPickerCtrlNameStr);
+                const wxString& name = wxASCII_STR(wxFontPickerCtrlNameStr));
 
 
 public:         // public API

@@ -2883,7 +2883,7 @@ public:
     wxStyledTextCtrl(wxWindow *parent, wxWindowID id=wxID_ANY,
                      const wxPoint& pos = wxDefaultPosition,
                      const wxSize& size = wxDefaultSize, long style = 0,
-                     const wxString& name = wxSTCNameStr);
+                     const wxString& name = wxASCII_STR(wxSTCNameStr));
     wxStyledTextCtrl() { m_swx = NULL; }
     ~wxStyledTextCtrl();
 
@@ -2892,7 +2892,7 @@ public:
     bool Create(wxWindow *parent, wxWindowID id=wxID_ANY,
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize, long style = 0,
-                const wxString& name = wxSTCNameStr);
+                const wxString& name = wxASCII_STR(wxSTCNameStr));
 
 
     //----------------------------------------------------------------------

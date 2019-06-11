@@ -23,6 +23,7 @@
 class WXDLLIMPEXP_FWD_CORE wxAnimation;
 
 extern WXDLLIMPEXP_DATA_CORE(wxAnimation) wxNullAnimation;
+// Default name for wxAnimationCtrl instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxAnimationCtrlNameStr[];
 
 

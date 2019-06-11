@@ -14,6 +14,7 @@
 
 #if wxUSE_ADDREMOVECTRL
 
+// Default name for wxAddRemoveCtrl instances
 extern WXDLLIMPEXP_DATA_CORE(const char) wxAddRemoveCtrlNameStr[];
 
 // ----------------------------------------------------------------------------
@@ -66,7 +67,7 @@ public:
                     const wxPoint& pos = wxDefaultPosition,
                     const wxSize& size = wxDefaultSize,
                     long style = 0,
-                    const wxString& name = wxAddRemoveCtrlNameStr)
+                    const wxString& name = wxASCII_STR(wxAddRemoveCtrlNameStr))
     {
         Init();
 
@@ -78,7 +79,7 @@ public:
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize,
                 long style = 0,
-                const wxString& name = wxAddRemoveCtrlNameStr);
+                const wxString& name = wxASCII_STR(wxAddRemoveCtrlNameStr));
 
     virtual ~wxAddRemoveCtrl();
 

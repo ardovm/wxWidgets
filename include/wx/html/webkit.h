@@ -23,6 +23,7 @@
 // Web Kit Control
 // ----------------------------------------------------------------------------
 
+// Default name for wxWebKit instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxWebKitCtrlNameStr[];
 
 class WXDLLIMPEXP_CORE wxWebKitCtrl : public wxControl
@@ -37,7 +38,7 @@ public:
                     const wxPoint& pos = wxDefaultPosition,
                     const wxSize& size = wxDefaultSize, long style = 0,
                     const wxValidator& validator = wxDefaultValidator,
-                    const wxString& name = wxWebKitCtrlNameStr)
+                    const wxString& name = wxASCII_STR(wxWebKitCtrlNameStr))
     {
         Create(parent, winID, strURL, pos, size, style, validator, name);
     }
@@ -47,7 +48,7 @@ public:
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize, long style = 0,
                 const wxValidator& validator = wxDefaultValidator,
-                const wxString& name = wxWebKitCtrlNameStr);
+                const wxString& name = wxASCII_STR(wxWebKitCtrlNameStr));
     virtual ~wxWebKitCtrl();
 
     void LoadURL(const wxString &url);

@@ -40,6 +40,7 @@
     #define wxGAUGE_EMULATE_INDETERMINATE_MODE 0
 #endif
 
+// Default name for wxGauge instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxGaugeNameStr[];
 
 class WXDLLIMPEXP_FWD_CORE wxAppProgressIndicator;
@@ -63,7 +64,7 @@ public:
                 const wxSize& size = wxDefaultSize,
                 long style = wxGA_HORIZONTAL,
                 const wxValidator& validator = wxDefaultValidator,
-                const wxString& name = wxGaugeNameStr);
+                const wxString& name = wxASCII_STR(wxGaugeNameStr));
 
     // determinate mode API
 

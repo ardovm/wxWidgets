@@ -25,6 +25,7 @@
 class WXDLLIMPEXP_FWD_CORE wxDataViewCtrl;
 class WXDLLIMPEXP_FWD_CORE wxDataViewEvent;
 
+// Default name for wxTreeListCtrl instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxTreeListCtrlNameStr[];
 
 class wxTreeListCtrl;
@@ -131,7 +132,7 @@ public:
                    const wxPoint& pos = wxDefaultPosition,
                    const wxSize& size = wxDefaultSize,
                    long style = wxTL_DEFAULT_STYLE,
-                   const wxString& name = wxTreeListCtrlNameStr)
+                   const wxString& name = wxASCII_STR(wxTreeListCtrlNameStr))
     {
         Init();
 
@@ -143,7 +144,7 @@ public:
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize,
                 long style = wxTL_DEFAULT_STYLE,
-                const wxString& name = wxTreeListCtrlNameStr);
+                const wxString& name = wxASCII_STR(wxTreeListCtrlNameStr));
 
 
     virtual ~wxTreeListCtrl();

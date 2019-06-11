@@ -32,6 +32,7 @@
 
 #include "wx/control.h"
 
+// Default name for wxRadioButton instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxRadioButtonNameStr[];
 
 #if defined(__WXUNIVERSAL__)

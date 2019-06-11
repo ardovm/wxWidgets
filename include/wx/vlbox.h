@@ -15,6 +15,8 @@
 #include "wx/bitmap.h"
 
 class WXDLLIMPEXP_FWD_CORE wxSelectionStore;
+
+// Default name for wxVListBox instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxVListBoxNameStr[];
 
 // ----------------------------------------------------------------------------
@@ -45,7 +47,7 @@ public:
                const wxPoint& pos = wxDefaultPosition,
                const wxSize& size = wxDefaultSize,
                long style = 0,
-               const wxString& name = wxVListBoxNameStr)
+               const wxString& name = wxASCII_STR(wxVListBoxNameStr))
     {
         Init();
 
@@ -63,7 +65,7 @@ public:
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize,
                 long style = 0,
-                const wxString& name = wxVListBoxNameStr);
+                const wxString& name = wxASCII_STR(wxVListBoxNameStr));
 
     // dtor does some internal cleanup (deletes m_selStore if any)
     virtual ~wxVListBox();

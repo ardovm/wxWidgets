@@ -18,7 +18,7 @@
 
 #include "wx/control.h"
 
-// class name
+// class name (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxCollapsiblePaneNameStr[];
 
 // ----------------------------------------------------------------------------

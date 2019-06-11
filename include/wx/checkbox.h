@@ -40,6 +40,7 @@
  */
 #define wxCHK_ALLOW_3RD_STATE_FOR_USER 0x2000
 
+// Default name for wxCheckBox instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxCheckBoxNameStr[];
 
 // ----------------------------------------------------------------------------

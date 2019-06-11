@@ -76,7 +76,7 @@ public:
                     const wxPoint& pos = wxDefaultPosition,
                     const wxSize& size = wxDefaultSize,
                     long style = wxAC_DEFAULT_STYLE,
-                    const wxString& name = wxAnimationCtrlNameStr)
+                    const wxString& name = wxASCII_STR(wxAnimationCtrlNameStr))
     {
         Init();
 
@@ -90,7 +90,7 @@ public:
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize,
                 long style = wxAC_DEFAULT_STYLE,
-                const wxString& name = wxAnimationCtrlNameStr);
+                const wxString& name = wxASCII_STR(wxAnimationCtrlNameStr));
 
     ~wxAnimationCtrl();
 

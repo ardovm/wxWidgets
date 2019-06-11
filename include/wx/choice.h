@@ -25,6 +25,7 @@
 // global data
 // ----------------------------------------------------------------------------
 
+// Default name for wxChoice instances (ASCII)
 extern WXDLLIMPEXP_DATA_CORE(const char) wxChoiceNameStr[];
 
 // ----------------------------------------------------------------------------

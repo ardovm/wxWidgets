@@ -970,7 +970,7 @@ public:
             const wxPoint& pos = wxDefaultPosition,
             const wxSize& size = wxDefaultSize,
             long style = wxWANTS_CHARS,
-            const wxString& name = wxGridNameStr)
+            const wxString& name = wxASCII_STR(wxGridNameStr))
     {
         Init();
 
@@ -982,7 +982,7 @@ public:
                 const wxPoint& pos = wxDefaultPosition,
                 const wxSize& size = wxDefaultSize,
                 long style = wxWANTS_CHARS,
-                const wxString& name = wxGridNameStr);
+                const wxString& name = wxASCII_STR(wxGridNameStr));
 
     virtual ~wxGrid();
 
@@ -1717,7 +1717,7 @@ public:
     wxGrid( wxWindow *parent,
             int x, int y, int w = wxDefaultCoord, int h = wxDefaultCoord,
             long style = wxWANTS_CHARS,
-            const wxString& name = wxPanelNameStr )
+            const wxString& name = wxASCII_STR(wxPanelNameStr) )
     {
         Init();
         Create(parent, wxID_ANY, wxPoint(x, y), wxSize(w, h), style, name);
