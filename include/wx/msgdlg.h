@@ -243,7 +243,7 @@ protected:
     {
         wxString msg = m_message;
         if ( !m_extendedMessage.empty() )
-            msg << wxS("\n\n") << m_extendedMessage;
+            msg << wxASCII_STR("\n\n") << m_extendedMessage;
 
         return msg;
     }

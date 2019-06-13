@@ -48,7 +48,7 @@ inline bool wxOleInitialize()
     // needs non-default mode.
     if ( hr != RPC_E_CHANGED_MODE && FAILED(hr) )
     {
-        wxLogError(wxGetTranslation("Cannot initialize OLE"));
+        wxLogError(wxGetTranslation(wxASCII_STR("Cannot initialize OLE")));
 
         return false;
     }

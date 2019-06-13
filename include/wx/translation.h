@@ -253,7 +253,7 @@ public:
 
 protected:
     // returns resource type to use for translations
-    virtual wxString GetResourceType() const { return wxS("MOFILE"); }
+    virtual wxString GetResourceType() const { return wxASCII_STR("MOFILE"); }
 
     // returns module to load resources from
     virtual WXHINSTANCE GetModule() const { return 0; }

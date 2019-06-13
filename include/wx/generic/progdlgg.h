@@ -82,9 +82,9 @@ protected:
 
     // Return the labels to use for showing the elapsed/estimated/remaining
     // times respectively.
-    static wxString GetElapsedLabel() { return wxGetTranslation("Elapsed time:"); }
-    static wxString GetEstimatedLabel() { return wxGetTranslation("Estimated time:"); }
-    static wxString GetRemainingLabel() { return wxGetTranslation("Remaining time:"); }
+    static wxString GetElapsedLabel() { return wxGetTranslation(wxASCII_STR("Elapsed time:")); }
+    static wxString GetEstimatedLabel() { return wxGetTranslation(wxASCII_STR("Estimated time:")); }
+    static wxString GetRemainingLabel() { return wxGetTranslation(wxASCII_STR("Remaining time:")); }
 
 
     // Similar to wxWindow::HasFlag() but tests for a presence of a wxPD_XXX

@@ -44,7 +44,7 @@ public:
     {
         if ( pipe(m_fds) == -1 )
         {
-            wxLogSysError(wxGetTranslation("Pipe creation failed"));
+            wxLogSysError(wxGetTranslation(wxASCII_STR("Pipe creation failed")));
 
             return false;
         }

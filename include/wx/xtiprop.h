@@ -172,7 +172,7 @@ public:
         if ( m_setter )
             m_setter->Set( object, value );
         else
-            wxLogError( wxGetTranslation("SetProperty called w/o valid setter") );
+            wxLogError( wxGetTranslation(wxASCII_STR("SetProperty called w/o valid setter")) );
     }
 
     // Getting a simple property (non-collection)
@@ -181,7 +181,7 @@ public:
         if ( m_getter )
             m_getter->Get( object, result );
         else
-            wxLogError( wxGetTranslation("GetProperty called w/o valid getter") );
+            wxLogError( wxGetTranslation(wxASCII_STR("GetProperty called w/o valid getter")) );
     }
 
     // Adding an element to a collection property
@@ -190,7 +190,7 @@ public:
         if ( m_adder )
             m_adder->Add( object, value );
         else
-            wxLogError( wxGetTranslation("AddToPropertyCollection called w/o valid adder") );
+            wxLogError( wxGetTranslation(wxASCII_STR("AddToPropertyCollection called w/o valid adder")) );
     }
 
     // Getting a collection property
@@ -199,7 +199,7 @@ public:
         if ( m_collectionGetter )
             m_collectionGetter->Get( obj, result);
         else
-            wxLogError( wxGetTranslation("GetPropertyCollection called w/o valid collection getter") );
+            wxLogError( wxGetTranslation(wxASCII_STR("GetPropertyCollection called w/o valid collection getter")) );
     }
 
     virtual bool HasSetter() const { return m_setter != NULL; }
@@ -252,14 +252,14 @@ public:
     virtual void AddToPropertyCollection(wxObject *WXUNUSED(object),
                                          const wxAny &WXUNUSED(value)) const
     {
-        wxLogError( wxGetTranslation("AddToPropertyCollection called on a generic accessor") );
+        wxLogError( wxGetTranslation(wxASCII_STR("AddToPropertyCollection called on a generic accessor")) );
     }
 
     // Getting a collection property
     virtual void GetPropertyCollection( const wxObject *WXUNUSED(obj),
                                         wxAnyList &WXUNUSED(result)) const
     {
-        wxLogError ( wxGetTranslation("GetPropertyCollection called on a generic accessor") );
+        wxLogError ( wxGetTranslation(wxASCII_STR("GetPropertyCollection called on a generic accessor")) );
     }
 
 private:

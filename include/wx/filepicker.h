@@ -291,7 +291,7 @@ protected:
                                             const wxString& wildcard) wxOVERRIDE
     {
         return new wxFilePickerWidget(parent, wxID_ANY,
-                                      wxGetTranslation(wxFilePickerWidgetLabel),
+                                      wxGetTranslation(wxASCII_STR(wxFilePickerWidgetLabel)),
                                       path, message, wildcard,
                                       wxDefaultPosition, wxDefaultSize,
                                       GetPickerStyle(GetWindowStyle()));
@@ -390,7 +390,7 @@ protected:
                                             const wxString& WXUNUSED(wildcard)) wxOVERRIDE
     {
         return new wxDirPickerWidget(parent, wxID_ANY,
-                                     wxGetTranslation(wxDirPickerWidgetLabel),
+                                     wxGetTranslation(wxASCII_STR(wxDirPickerWidgetLabel)),
                                      path, message,
                                      wxDefaultPosition, wxDefaultSize,
                                      GetPickerStyle(GetWindowStyle()));

@@ -87,8 +87,8 @@ public:
 
     // Retrieve the current window menu label: it can be different from
     // "Window" when using non-English translations and can also be different
-    // from wxGetTranslation("Window") if the locale has changed since the
-    // "Window" menu was added.
+    // from wxGetTranslation(wxASCII_STR("Window")) if the locale has changed
+    // since the "Window" menu was added.
     const wxString& MSWGetCurrentWindowMenuLabel() const
         { return m_currentWindowMenuLabel; }
 

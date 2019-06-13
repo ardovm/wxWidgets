@@ -288,7 +288,7 @@ private:
     ExtraData *m_data;
 };
 
-#define wxLOG_KEY_TRACE_MASK wxS("wx.trace_mask")
+#define wxLOG_KEY_TRACE_MASK wxASCII_STR("wx.trace_mask")
 
 // ----------------------------------------------------------------------------
 // log record: a unit of log output

@@ -3863,7 +3863,7 @@ public:
 
     virtual bool EditProperties(wxWindow* parent, wxRichTextBuffer* buffer) wxOVERRIDE;
 
-    virtual wxString GetPropertiesMenuLabel() const wxOVERRIDE { return wxGetTranslation("&Box"); }
+    virtual wxString GetPropertiesMenuLabel() const wxOVERRIDE { return wxGetTranslation(wxASCII_STR("&Box")); }
 
 // Accessors
 
@@ -5007,7 +5007,7 @@ public:
 
     virtual bool EditProperties(wxWindow* parent, wxRichTextBuffer* buffer) wxOVERRIDE;
 
-    virtual wxString GetPropertiesMenuLabel() const wxOVERRIDE { return wxGetTranslation("&Picture"); }
+    virtual wxString GetPropertiesMenuLabel() const wxOVERRIDE { return wxGetTranslation(wxASCII_STR("&Picture")); }
 
     virtual bool UsesParagraphAttributes() const wxOVERRIDE { return false; }
 
@@ -5957,7 +5957,7 @@ public:
 
     virtual bool EditProperties(wxWindow* parent, wxRichTextBuffer* buffer) wxOVERRIDE;
 
-    virtual wxString GetPropertiesMenuLabel() const wxOVERRIDE { return wxGetTranslation("&Cell"); }
+    virtual wxString GetPropertiesMenuLabel() const wxOVERRIDE { return wxGetTranslation(wxASCII_STR("&Cell")); }
 
     /// Don't allow a cell to be deleted in Defragment
     virtual bool IsEmpty() const wxOVERRIDE { return false; }
@@ -6066,7 +6066,7 @@ public:
 
     virtual bool EditProperties(wxWindow* parent, wxRichTextBuffer* buffer) wxOVERRIDE;
 
-    virtual wxString GetPropertiesMenuLabel() const wxOVERRIDE { return wxGetTranslation("&Table"); }
+    virtual wxString GetPropertiesMenuLabel() const wxOVERRIDE { return wxGetTranslation(wxASCII_STR("&Table")); }
 
     // Returns true if objects of this class can accept the focus, i.e. a call to SetFocusObject
     // is possible. For example, containers supporting text, such as a text box object, can accept the focus,
