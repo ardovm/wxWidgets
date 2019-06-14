@@ -86,8 +86,8 @@ class WXDLLIMPEXP_FWD_BASE wxObject;
 #endif // wxUSE_LOG_TRACE
 
 // wxLOG_COMPONENT identifies the component which generated the log record and
-// can be #define'd to a user-defined value when compiling the user code to use
-// component-based filtering (see wxLog::SetComponentLevel())
+// can be #define'd to a user-defined value (ASCII only) when compiling the
+// user code to use component-based filtering (see wxLog::SetComponentLevel())
 #ifndef wxLOG_COMPONENT
     // this is a variable and not a macro in order to allow the user code to
     // just #define wxLOG_COMPONENT without #undef'ining it first
@@ -1269,7 +1269,7 @@ WXDLLIMPEXP_BASE wxString wxSysErrorMsgStr(unsigned long nErrCode = 0);
 //       notably the need for two macros due to buggy __LINE__ in MSVC.
 #define wxDO_LOG_IF_ENABLED_HELPER(level, loopvar)                            \
     for ( bool loopvar = false;                                               \
-          !loopvar && wxLog::IsLevelEnabled(wxLOG_##level, wxLOG_COMPONENT);  \
+          !loopvar && wxLog::IsLevelEnabled(wxLOG_##level, wxASCII_STR(wxLOG_COMPONENT)); \
           loopvar = true )                                                    \
         wxDO_LOG(level)
 
@@ -1295,13 +1295,13 @@ WXDLLIMPEXP_BASE wxString wxSysErrorMsgStr(unsigned long nErrCode = 0);
 
 // this one is special as it only logs if we're in verbose mode
 #define wxLogVerbose                                                          \
-    if ( !(wxLog::IsLevelEnabled(wxLOG_Info, wxLOG_COMPONENT) &&              \
+    if ( !(wxLog::IsLevelEnabled(wxLOG_Info, wxASCII_STR(wxLOG_COMPONENT)) && \
             wxLog::GetVerbose()) )                                            \
     {}                                                                        \
     else                                                                      \
         wxDO_LOG(Info)
 #define wxVLogVerbose(format, argptr)                                         \
-    if ( !(wxLog::IsLevelEnabled(wxLOG_Info, wxLOG_COMPONENT) &&              \
+    if ( !(wxLog::IsLevelEnabled(wxLOG_Info, wxASCII_STR(wxLOG_COMPONENT)) && \
             wxLog::GetVerbose()) )                                            \
     {}                                                                        \
     else                                                                      \
@@ -1314,7 +1314,7 @@ WXDLLIMPEXP_BASE wxString wxSysErrorMsgStr(unsigned long nErrCode = 0);
 // always evaluated, unlike for the other log functions
 #define wxLogGeneric wxMAKE_LOGGER(Max).LogAtLevel
 #define wxVLogGeneric(level, format, argptr) \
-    if ( !wxLog::IsLevelEnabled(wxLOG_##level, wxLOG_COMPONENT) )             \
+    if ( !wxLog::IsLevelEnabled(wxLOG_##level, wxASCII_STR(wxLOG_COMPONENT)) ) \
     {}                                                                        \
     else                                                                      \
         wxDO_LOGV(level, format, argptr)
@@ -1332,10 +1332,10 @@ WXDLLIMPEXP_BASE wxString wxSysErrorMsgStr(unsigned long nErrCode = 0);
 // and it will have changed already by then (in fact it even changes when
 // wxString::Format() is called because of vsnprintf() inside it so it can
 // change even much sooner)
-#define wxLOG_KEY_SYS_ERROR_CODE "wx.sys_error"
+#define wxLOG_KEY_SYS_ERROR_CODE wxASCII_STR("wx.sys_error")
 
 #define wxLogSysError                                                         \
-    if ( !wxLog::IsLevelEnabled(wxLOG_Error, wxLOG_COMPONENT) )               \
+    if ( !wxLog::IsLevelEnabled(wxLOG_Error, wxASCII_STR(wxLOG_COMPONENT)) )  \
     {}                                                                        \
     else                                                                      \
         wxMAKE_LOGGER(Error).MaybeStore(wxLOG_KEY_SYS_ERROR_CODE,             \
@@ -1351,10 +1351,10 @@ WXDLLIMPEXP_BASE wxString wxSysErrorMsgStr(unsigned long nErrCode = 0);
 #if wxUSE_GUI
     // wxLogStatus() is similar to wxLogSysError() as it allows to optionally
     // specify the frame to which the message should go
-    #define wxLOG_KEY_FRAME "wx.frame"
+    #define wxLOG_KEY_FRAME wxASCII_STR("wx.frame")
 
     #define wxLogStatus                                                       \
-        if ( !wxLog::IsLevelEnabled(wxLOG_Status, wxLOG_COMPONENT) )          \
+        if ( !wxLog::IsLevelEnabled(wxLOG_Status, wxASCII_STR(wxLOG_COMPONENT)) ) \
         {}                                                                    \
         else                                                                  \
             wxMAKE_LOGGER(Status).MaybeStore(wxLOG_KEY_FRAME).Log
@@ -1455,12 +1455,12 @@ public:
 
 #if wxUSE_LOG_TRACE
     #define wxLogTrace                                                        \
-        if ( !wxLog::IsLevelEnabled(wxLOG_Trace, wxLOG_COMPONENT) )           \
+        if ( !wxLog::IsLevelEnabled(wxLOG_Trace, wxASCII_STR(wxLOG_COMPONENT)) ) \
         {}                                                                    \
         else                                                                  \
             wxMAKE_LOGGER(Trace).LogTrace
     #define wxVLogTrace                                                       \
-        if ( !wxLog::IsLevelEnabled(wxLOG_Trace, wxLOG_COMPONENT) )           \
+        if ( !wxLog::IsLevelEnabled(wxLOG_Trace, wxASCII_STR(wxLOG_COMPONENT)) ) \
         {}                                                                    \
         else                                                                  \
             wxMAKE_LOGGER(Trace).LogVTrace

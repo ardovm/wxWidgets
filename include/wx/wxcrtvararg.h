@@ -440,12 +440,16 @@ WX_DEFINE_SCANFUNC(wxSscanf, 2, (const wxScopedCharBuffer& str, const char *form
                    wxCRT_SscanfA, (str.data(), format))
 WX_DEFINE_SCANFUNC(wxSscanf, 2, (const wxScopedWCharBuffer& str, const wchar_t *format),
                    wxCRT_SscanfW, (str.data(), wxScanfConvertFormatW(format)))
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 WX_DEFINE_SCANFUNC(wxSscanf, 2, (const wxString& str, const char *format),
                    wxCRT_SscanfA, (str.mb_str(), format))
+#endif
 WX_DEFINE_SCANFUNC(wxSscanf, 2, (const wxString& str, const wchar_t *format),
                    wxCRT_SscanfW, (str.wc_str(), wxScanfConvertFormatW(format)))
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 WX_DEFINE_SCANFUNC(wxSscanf, 2, (const wxCStrData& str, const char *format),
                    wxCRT_SscanfA, (str.AsCharBuf(), format))
+#endif
 WX_DEFINE_SCANFUNC(wxSscanf, 2, (const wxCStrData& str, const wchar_t *format),
                    wxCRT_SscanfW, (str.AsWCharBuf(), wxScanfConvertFormatW(format)))
 

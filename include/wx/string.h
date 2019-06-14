@@ -146,7 +146,9 @@ private:
 public:
     // Ctor constructs the object from char literal; they are needed to make
     // operator?: compile and they intentionally take char*, not const char*
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
     inline wxCStrData(char *buf);
+#endif
     inline wxCStrData(wchar_t *buf);
     inline wxCStrData(const wxCStrData& data);
 
@@ -4181,8 +4183,10 @@ WXDLLIMPEXP_BASE wxSTD wostream& operator<<(wxSTD wostream&, const wxScopedWChar
 // wxCStrData implementation
 // ---------------------------------------------------------------------------
 
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 inline wxCStrData::wxCStrData(char *buf)
     : m_str(new wxString(buf)), m_offset(0), m_owned(true) {}
+#endif
 inline wxCStrData::wxCStrData(wchar_t *buf)
     : m_str(new wxString(buf)), m_offset(0), m_owned(true) {}
 

@@ -77,7 +77,7 @@ protected:
     // its own
     void AddDependency(const char *className)
     {
-        m_namedDependencies.Add(className);
+        m_namedDependencies.Add(wxString(className, wxConvLibc));
     }
 
 
