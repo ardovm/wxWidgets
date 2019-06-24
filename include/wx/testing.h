@@ -51,7 +51,7 @@ wxString wxGetDialogClassDescription(const wxClassInfo *ci, T* dlg = NULL)
     // than a readable but useless "wxDialog".
     if ( ci == wxCLASSINFO(wxDialog) )
     {
-        return wxString::Format("dialog of type \"%s\"",
+        return wxString::Format(wxS("dialog of type \"%s\""),
                                 (dlg ? typeid(*dlg) : typeid(T)).name());
     }
 
@@ -248,23 +248,23 @@ protected:
         {
             case wxID_YES:
             case wxID_NO:
-                details = "wxYES_NO style";
+                details = wxASCII_STR("wxYES_NO style");
                 break;
 
             case wxID_CANCEL:
-                details = "wxCANCEL style";
+                details = wxASCII_STR("wxCANCEL style");
                 break;
 
             case wxID_OK:
-                details = "wxOK style";
+                details = wxASCII_STR("wxOK style");
                 break;
 
             default:
-                details.Printf("a button with ID=%d", m_id);
+                details.Printf(wxS("a button with ID=%d"), m_id);
                 break;
         }
 
-        return "wxMessageDialog with " + details;
+        return wxASCII_STR("wxMessageDialog with ") + details;
     }
 };
 
@@ -337,7 +337,7 @@ public:
             (
                 wxString::Format
                 (
-                    "Expected %s was not shown.",
+                    wxS("Expected %s was not shown."),
                     expect->GetDescription()
                 )
             );
@@ -370,7 +370,7 @@ protected:
                 (
                     wxString::Format
                     (
-                        "%s was shown unexpectedly, expected %s.",
+                        wxS("%s was shown unexpectedly, expected %s."),
                         DescribeUnexpectedDialog(dlg),
                         expect->GetDescription()
                     )
@@ -384,7 +384,7 @@ protected:
         (
             wxString::Format
             (
-                "%s was shown unexpectedly.",
+                wxS("%s was shown unexpectedly."),
                 DescribeUnexpectedDialog(dlg)
             )
         );
@@ -403,14 +403,14 @@ protected:
         {
             return wxString::Format
                    (
-                        "A message box \"%s\"",
+                        wxS("A message box \"%s\""),
                         msgdlg->GetMessage()
                    );
         }
 
         return wxString::Format
                (
-                    "A %s with title \"%s\"",
+                    wxS("A %s with title \"%s\""),
                     wxGetDialogClassDescription(dlg->GetClassInfo(), dlg),
                     dlg->GetTitle()
                );

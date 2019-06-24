@@ -306,7 +306,7 @@ private:
   // these methods are not implemented - there is _no_ conversion from int to
   // string, you're doing something wrong if the compiler wants to call it!
   //
-  // try `s << i' or `s.Printf("%d", i)' instead
+  // try `s << i' or `s.Printf(wxS("%d"), i)' instead
   wxString(int);
 
 
@@ -2060,12 +2060,12 @@ public:
       // insert a long long if they exist and aren't longs
   wxString& operator<<(wxLongLong_t ll)
     {
-      return (*this) << Format("%" wxLongLongFmtSpec "d", ll);
+      return (*this) << Format(wxS("%") wxS(wxLongLongFmtSpec) wxS("d"), ll);
     }
       // insert an unsigned long long
   wxString& operator<<(wxULongLong_t ull)
     {
-      return (*this) << Format("%" wxLongLongFmtSpec "u" , ull);
+      return (*this) << Format(wxS("%") wxS(wxLongLongFmtSpec) wxS("u") , ull);
     }
 #endif // wxHAS_LONG_LONG_T_DIFFERENT_FROM_LONG
       // insert a float into string

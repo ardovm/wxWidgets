@@ -280,14 +280,14 @@ WX_DEFINE_VARARG_FUNC_SANS_N0(int, wxPrintf, 1, (const wxFormatString&),
                               wxCRT_PrintfNative, wxCRT_PrintfA)
 inline int wxPrintf(const wxFormatString& s)
 {
-    return wxPrintf("%s", s.InputAsString());
+    return wxPrintf(wxS("%s"), s.InputAsString());
 }
 
 WX_DEFINE_VARARG_FUNC_SANS_N0(int, wxFprintf, 2, (FILE*, const wxFormatString&),
                               wxCRT_FprintfNative, wxCRT_FprintfA)
 inline int wxFprintf(FILE *f, const wxFormatString& s)
 {
-    return wxFprintf(f, "%s", s.InputAsString());
+    return wxFprintf(f, wxS("%s"), s.InputAsString());
 }
 
 // va_list versions of printf functions simply forward to the respective

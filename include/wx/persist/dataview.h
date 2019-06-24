@@ -138,7 +138,7 @@ private:
     // Return a (slash-terminated) prefix for the column-specific entries.
     static wxString MakeColumnPrefix(const wxDataViewColumn* column)
     {
-        return wxString::Format("/Columns/%s/", column->GetTitle());
+        return wxString::Format(wxS("/Columns/%s/"), column->GetTitle());
     }
 
     // Return the column with the given title or NULL.

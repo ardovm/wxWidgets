@@ -34,7 +34,7 @@ public:
         // Note that we use a different name for it for each call to
         // RunScript() (which creates a new wxJSScriptWrapper every time) to
         // avoid any possible conflict between different calls.
-        m_outputVarName = wxString::Format("__wxOut%i", (*runScriptCount)++);
+        m_outputVarName = wxString::Format(wxS("__wxOut%i"), (*runScriptCount)++);
 
         // Adds one escape level if there is a single quote, double quotes or
         // escape characters
@@ -52,8 +52,8 @@ public:
     {
         return wxString::Format
                (
-                "try { var %s = eval(\"%s\"); true; } "
-                "catch (e) { e.name + \": \" + e.message; }",
+                wxASCII_STR("try { var %s = eval(\"%s\"); true; } "
+                "catch (e) { e.name + \": \" + e.message; }"),
                 m_outputVarName,
                 m_escapedCode
                );
@@ -66,9 +66,9 @@ public:
 #if wxUSE_WEBVIEW && wxUSE_WEBVIEW_WEBKIT && defined(__WXOSX__)
         return wxString::Format
                (
-                "if (typeof %s == 'object') JSON.stringify(%s);"
+                wxASCII_STR("if (typeof %s == 'object') JSON.stringify(%s);"
                 "else if (typeof %s == 'undefined') 'undefined';"
-                "else %s;",
+                "else %s;"),
                 m_outputVarName,
                 m_outputVarName,
                 m_outputVarName,
@@ -77,7 +77,7 @@ public:
 #elif wxUSE_WEBVIEW && wxUSE_WEBVIEW_IE
         return wxString::Format
                (
-                "try {"
+                wxASCII_STR("try {"
                     "(%s == null || typeof %s != 'object') ? String(%s)"
                                                           ": JSON.stringify(%s);"
                 "}"
@@ -138,7 +138,7 @@ public:
                         "__wx$stringifyJSON(%s);"
                     "}"
                     "catch (e) { e.name + \": \" + e.message; }"
-                "}",
+                "}"),
                 m_outputVarName,
                 m_outputVarName,
                 m_outputVarName,
@@ -154,7 +154,7 @@ public:
     // we executed be garbage-collected.
     wxString GetCleanUpCode() const
     {
-        return wxString::Format("%s = undefined;", m_outputVarName);
+        return wxString::Format(wxS("%s = undefined;"), m_outputVarName);
     }
 
 private:

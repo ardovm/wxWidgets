@@ -133,16 +133,20 @@ class WXDLLIMPEXP_FWD_BASE wxString;
 class WXDLLIMPEXP_BASE wxFormatString
 {
 public:
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
     wxFormatString(const char *str)
         : m_char(wxScopedCharBuffer::CreateNonOwned(str)), m_str(NULL), m_cstr(NULL) {}
+#endif
     wxFormatString(const wchar_t *str)
         : m_wchar(wxScopedWCharBuffer::CreateNonOwned(str)), m_str(NULL), m_cstr(NULL) {}
     wxFormatString(const wxString& str)
         : m_str(&str), m_cstr(NULL) {}
     wxFormatString(const wxCStrData& str)
         : m_str(NULL), m_cstr(&str) {}
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
     wxFormatString(const wxScopedCharBuffer& str)
         : m_char(str), m_str(NULL), m_cstr(NULL)  {}
+#endif
     wxFormatString(const wxScopedWCharBuffer& str)
         : m_wchar(str), m_str(NULL), m_cstr(NULL) {}
 
@@ -201,7 +205,7 @@ public:
     // to other InputAsXXX() methods
     wxString InputAsString() const;
 
-#if !wxUSE_UNICODE_WCHAR
+#if !wxUSE_UNICODE_WCHAR && !defined wxNO_IMPLICIT_WXSTRING_ENCODING
     operator const char*() const
         { return const_cast<wxFormatString*>(this)->AsChar(); }
 private:
@@ -212,7 +216,7 @@ private:
     const char* InputAsChar();
     const char* AsChar();
     wxScopedCharBuffer m_convertedChar;
-#endif // !wxUSE_UNICODE_WCHAR
+#endif // !wxUSE_UNICODE_WCHAR && !defined wx_NO_IMPLICIT_WXSTRING_ENCODING
 
 #if wxUSE_UNICODE && !wxUSE_UTF8_LOCALE_ONLY
 public:
@@ -282,17 +286,21 @@ template<>
 struct wxFormatStringArgumentFinder<wxString>
     : public wxFormatStringArgumentFinder<const wxString&> {};
 
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 template<>
 struct wxFormatStringArgumentFinder<wxScopedCharBuffer>
     : public wxFormatStringArgumentFinder<const wxScopedCharBuffer&> {};
+#endif
 
 template<>
 struct wxFormatStringArgumentFinder<wxScopedWCharBuffer>
     : public wxFormatStringArgumentFinder<const wxScopedWCharBuffer&> {};
 
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 template<>
 struct wxFormatStringArgumentFinder<wxCharBuffer>
     : public wxFormatStringArgumentFinder<const wxCharBuffer&> {};
+#endif
 
 template<>
 struct wxFormatStringArgumentFinder<wxWCharBuffer>
@@ -406,18 +414,20 @@ wxFORMAT_STRING_SPECIFIER(long double, wxFormatString::Arg_LongDouble)
 wxFORMAT_STRING_SPECIFIER(wchar_t, wxFormatString::Arg_Char | wxFormatString::Arg_Int)
 #endif
 
-#if !wxUSE_UNICODE
+#if !wxUSE_UNICODE && !defined wxNO_IMPLICIT_WXSTRING_ENCODING
 wxFORMAT_STRING_SPECIFIER(char, wxFormatString::Arg_Char | wxFormatString::Arg_Int)
 wxFORMAT_STRING_SPECIFIER(signed char, wxFormatString::Arg_Char | wxFormatString::Arg_Int)
 wxFORMAT_STRING_SPECIFIER(unsigned char, wxFormatString::Arg_Char | wxFormatString::Arg_Int)
 #endif
 
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 wxFORMAT_STRING_SPECIFIER(char*, wxFormatString::Arg_String)
 wxFORMAT_STRING_SPECIFIER(unsigned char*, wxFormatString::Arg_String)
 wxFORMAT_STRING_SPECIFIER(signed char*, wxFormatString::Arg_String)
 wxFORMAT_STRING_SPECIFIER(const char*, wxFormatString::Arg_String)
 wxFORMAT_STRING_SPECIFIER(const unsigned char*, wxFormatString::Arg_String)
 wxFORMAT_STRING_SPECIFIER(const signed char*, wxFormatString::Arg_String)
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 wxFORMAT_STRING_SPECIFIER(wchar_t*, wxFormatString::Arg_String)
 wxFORMAT_STRING_SPECIFIER(const wchar_t*, wxFormatString::Arg_String)
 
@@ -573,6 +583,7 @@ struct WXDLLIMPEXP_BASE wxArgNormalizerWchar<const wxCStrData&>
 // char* for wchar_t Unicode build or UTF8):
 #if wxUSE_UNICODE_WCHAR
 
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 template<>
 struct wxArgNormalizerWchar<const char*>
     : public wxArgNormalizerWithBuffer<wchar_t>
@@ -581,6 +592,7 @@ struct wxArgNormalizerWchar<const char*>
                          const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerWithBuffer<wchar_t>(wxConvLibc.cMB2WC(s), fmt, index) {}
 };
+#endif
 
 #elif wxUSE_UNICODE_UTF8
 
@@ -593,6 +605,7 @@ struct wxArgNormalizerUtf8<const wchar_t*>
         : wxArgNormalizerWithBuffer<char>(wxConvUTF8.cWC2MB(s), fmt, index) {}
 };
 
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 template<>
 struct wxArgNormalizerUtf8<const char*>
     : public wxArgNormalizerWithBuffer<char>
@@ -618,9 +631,10 @@ struct wxArgNormalizerUtf8<const char*>
         }
     }
 };
+#endif
 
 // UTF-8 build needs conversion to wchar_t* too:
-#if !wxUSE_UTF8_LOCALE_ONLY
+#if !wxUSE_UTF8_LOCALE_ONLY && !defined wxNO_IMPLICIT_WXSTRING_ENCODING
 template<>
 struct wxArgNormalizerWchar<const char*>
     : public wxArgNormalizerWithBuffer<wchar_t>
@@ -629,10 +643,11 @@ struct wxArgNormalizerWchar<const char*>
                          const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerWithBuffer<wchar_t>(wxConvLibc.cMB2WC(s), fmt, index) {}
 };
-#endif // !wxUSE_UTF8_LOCALE_ONLY
+#endif // !wxUSE_UTF8_LOCALE_ONLY && !defined wxNO_IMPLICIT_WXSTRING_ENCODING
 
 #else // ANSI - FIXME-UTF8
 
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 template<>
 struct wxArgNormalizerWchar<const wchar_t*>
     : public wxArgNormalizerWithBuffer<char>
@@ -641,6 +656,7 @@ struct wxArgNormalizerWchar<const wchar_t*>
                          const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerWithBuffer<char>(wxConvLibc.cWC2MB(s), fmt, index) {}
 };
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 
 #endif // wxUSE_UNICODE_WCHAR/wxUSE_UNICODE_UTF8/ANSI
 
@@ -677,16 +693,22 @@ WX_ARG_NORMALIZER_FORWARD(wxString, const wxString&);
 WX_ARG_NORMALIZER_FORWARD(wxCStrData, const wxCStrData&);
 
 // versions for passing non-const pointers:
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 WX_ARG_NORMALIZER_FORWARD(char*, const char*);
+#endif
 WX_ARG_NORMALIZER_FORWARD(wchar_t*, const wchar_t*);
 
 // versions for passing wx[W]CharBuffer:
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 WX_ARG_NORMALIZER_FORWARD(wxScopedCharBuffer, const char*);
 WX_ARG_NORMALIZER_FORWARD(const wxScopedCharBuffer&, const char*);
+#endif
 WX_ARG_NORMALIZER_FORWARD(wxScopedWCharBuffer, const wchar_t*);
 WX_ARG_NORMALIZER_FORWARD(const wxScopedWCharBuffer&, const wchar_t*);
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 WX_ARG_NORMALIZER_FORWARD(wxCharBuffer, const char*);
 WX_ARG_NORMALIZER_FORWARD(const wxCharBuffer&, const char*);
+#endif
 WX_ARG_NORMALIZER_FORWARD(wxWCharBuffer, const wchar_t*);
 WX_ARG_NORMALIZER_FORWARD(const wxWCharBuffer&, const wchar_t*);
 
