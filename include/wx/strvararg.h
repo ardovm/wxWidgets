@@ -290,7 +290,14 @@ struct wxFormatStringArgumentFinder<wxString>
 template<>
 struct wxFormatStringArgumentFinder<wxScopedCharBuffer>
     : public wxFormatStringArgumentFinder<const wxScopedCharBuffer&> {};
-#endif
+#else
+template<>
+class wxFormatStringArgumentFinder<wxScopedCharBuffer>
+    : public wxFormatStringArgumentFinder<const wxScopedCharBuffer&> {
+private:
+    wxFormatStringArgumentFinder<wxScopedCharBuffer>(); // Disabled
+};
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 
 template<>
 struct wxFormatStringArgumentFinder<wxScopedWCharBuffer>
@@ -300,7 +307,14 @@ struct wxFormatStringArgumentFinder<wxScopedWCharBuffer>
 template<>
 struct wxFormatStringArgumentFinder<wxCharBuffer>
     : public wxFormatStringArgumentFinder<const wxCharBuffer&> {};
-#endif
+#else
+template<>
+class wxFormatStringArgumentFinder<wxCharBuffer>
+    : public wxFormatStringArgumentFinder<const wxCharBuffer&> {
+private:
+    wxFormatStringArgumentFinder<wxCharBuffer>(); // Disabled
+};
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 
 template<>
 struct wxFormatStringArgumentFinder<wxWCharBuffer>
@@ -395,6 +409,13 @@ struct wxFormatStringSpecifier<const T*>
         enum { value = arg };                                               \
     };
 
+#define wxDISABLED_FORMAT_STRING_SPECIFIER(T)                               \
+    template<> class wxFormatStringSpecifier<T>                             \
+    {                                                                       \
+    private:                                                                \
+        wxFormatStringSpecifier<T>(); /* Disabled */                        \
+    };
+
 wxFORMAT_STRING_SPECIFIER(bool, wxFormatString::Arg_Int)
 wxFORMAT_STRING_SPECIFIER(int, wxFormatString::Arg_Int)
 wxFORMAT_STRING_SPECIFIER(unsigned int, wxFormatString::Arg_Int)
@@ -427,6 +448,13 @@ wxFORMAT_STRING_SPECIFIER(signed char*, wxFormatString::Arg_String)
 wxFORMAT_STRING_SPECIFIER(const char*, wxFormatString::Arg_String)
 wxFORMAT_STRING_SPECIFIER(const unsigned char*, wxFormatString::Arg_String)
 wxFORMAT_STRING_SPECIFIER(const signed char*, wxFormatString::Arg_String)
+#else // wxNO_IMPLICIT_WXSTRING_ENCODING
+wxDISABLED_FORMAT_STRING_SPECIFIER(char*)
+wxDISABLED_FORMAT_STRING_SPECIFIER(unsigned char*)
+wxDISABLED_FORMAT_STRING_SPECIFIER(signed char*)
+wxDISABLED_FORMAT_STRING_SPECIFIER(const char*)
+wxDISABLED_FORMAT_STRING_SPECIFIER(const unsigned char*)
+wxDISABLED_FORMAT_STRING_SPECIFIER(const signed char*)
 #endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 wxFORMAT_STRING_SPECIFIER(wchar_t*, wxFormatString::Arg_String)
 wxFORMAT_STRING_SPECIFIER(const wchar_t*, wxFormatString::Arg_String)
@@ -442,14 +470,16 @@ wxFORMAT_STRING_SPECIFIER(std::nullptr_t, wxFormatString::Arg_Pointer)
 #endif
 
 #undef wxFORMAT_STRING_SPECIFIER
+#undef wxDISABLED_FORMAT_STRING_SPECIFIER
 
 
 // Converts an argument passed to wxPrint etc. into standard form expected,
 // by wxXXX functions, e.g. all strings (wxString, char*, wchar_t*) are
 // converted into wchar_t* or char* depending on the build.
 template<typename T>
-struct wxArgNormalizer
+class wxArgNormalizer
 {
+public:
     // Ctor. 'value' is the value passed as variadic argument, 'fmt' is pointer
     // to printf-like format string or NULL if the variadic function doesn't
     // use format string and 'index' is index of 'value' in variadic arguments
@@ -474,8 +504,9 @@ struct wxArgNormalizer
 // string representation
 #if !wxUSE_UTF8_LOCALE_ONLY
 template<typename T>
-struct wxArgNormalizerWchar : public wxArgNormalizer<T>
+class wxArgNormalizerWchar : public wxArgNormalizer<T>
 {
+public:
     wxArgNormalizerWchar(T value,
                          const wxFormatString *fmt, unsigned index)
         : wxArgNormalizer<T>(value, fmt, index) {}
@@ -486,8 +517,9 @@ struct wxArgNormalizerWchar : public wxArgNormalizer<T>
 // char* strings
 #if wxUSE_UNICODE_UTF8
     template<typename T>
-    struct wxArgNormalizerUtf8 : public wxArgNormalizer<T>
+    class wxArgNormalizerUtf8 : public wxArgNormalizer<T>
     {
+    public:
         wxArgNormalizerUtf8(T value,
                             const wxFormatString *fmt, unsigned index)
             : wxArgNormalizer<T>(value, fmt, index) {}
@@ -507,8 +539,9 @@ struct wxArgNormalizerWchar : public wxArgNormalizer<T>
 // CharType is either wxStringCharType or wchar_t in UTF-8 build when wrapping
 // widechar CRT function
 template<typename CharType>
-struct wxArgNormalizerWithBuffer
+class wxArgNormalizerWithBuffer
 {
+public:
     typedef wxScopedCharTypeBuffer<CharType> CharBuffer;
 
     wxArgNormalizerWithBuffer() {}
@@ -585,21 +618,23 @@ struct WXDLLIMPEXP_BASE wxArgNormalizerWchar<const wxCStrData&>
 
 #ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 template<>
-struct wxArgNormalizerWchar<const char*>
+class wxArgNormalizerWchar<const char*>
     : public wxArgNormalizerWithBuffer<wchar_t>
 {
+public:
     wxArgNormalizerWchar(const char* s,
                          const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerWithBuffer<wchar_t>(wxConvLibc.cMB2WC(s), fmt, index) {}
 };
-#endif
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 
 #elif wxUSE_UNICODE_UTF8
 
 template<>
-struct wxArgNormalizerUtf8<const wchar_t*>
+class wxArgNormalizerUtf8<const wchar_t*>
     : public wxArgNormalizerWithBuffer<char>
 {
+public:
     wxArgNormalizerUtf8(const wchar_t* s,
                         const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerWithBuffer<char>(wxConvUTF8.cWC2MB(s), fmt, index) {}
@@ -607,9 +642,10 @@ struct wxArgNormalizerUtf8<const wchar_t*>
 
 #ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 template<>
-struct wxArgNormalizerUtf8<const char*>
+class wxArgNormalizerUtf8<const char*>
     : public wxArgNormalizerWithBuffer<char>
 {
+public:
     wxArgNormalizerUtf8(const char* s,
                         const wxFormatString *fmt,
                         unsigned index)
@@ -636,9 +672,10 @@ struct wxArgNormalizerUtf8<const char*>
 // UTF-8 build needs conversion to wchar_t* too:
 #if !wxUSE_UTF8_LOCALE_ONLY && !defined wxNO_IMPLICIT_WXSTRING_ENCODING
 template<>
-struct wxArgNormalizerWchar<const char*>
+class wxArgNormalizerWchar<const char*>
     : public wxArgNormalizerWithBuffer<wchar_t>
 {
+public:
     wxArgNormalizerWchar(const char* s,
                          const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerWithBuffer<wchar_t>(wxConvLibc.cMB2WC(s), fmt, index) {}
@@ -649,9 +686,10 @@ struct wxArgNormalizerWchar<const char*>
 
 #ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 template<>
-struct wxArgNormalizerWchar<const wchar_t*>
+class wxArgNormalizerWchar<const wchar_t*>
     : public wxArgNormalizerWithBuffer<char>
 {
+public:
     wxArgNormalizerWchar(const wchar_t* s,
                          const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerWithBuffer<char>(wxConvLibc.cWC2MB(s), fmt, index) {}
@@ -660,6 +698,51 @@ struct wxArgNormalizerWchar<const wchar_t*>
 
 #endif // wxUSE_UNICODE_WCHAR/wxUSE_UNICODE_UTF8/ANSI
 
+
+#ifdef wxNO_IMPLICIT_WXSTRING_ENCODING
+// wxArgNormalizer specializations that cannot be instanced
+template<>
+class wxArgNormalizer<const char*> {
+private:
+    wxArgNormalizer<const char*>(const char*, const wxFormatString *,
+                                 unsigned);
+    const char *get() const;
+};
+template<>
+class wxArgNormalizer<char*> {
+private:
+    wxArgNormalizer<char*>(const char*, const wxFormatString *, unsigned);
+    char *get() const;
+};
+template<>
+class wxArgNormalizer<const std::string> {
+private:
+    wxArgNormalizer<const std::string>(const std::string&,
+                                        const wxFormatString *, unsigned);
+    std::string get() const;
+};
+template<>
+class wxArgNormalizer<std::string> {
+private:
+    wxArgNormalizer<std::string>(std::string&,
+                                 const wxFormatString *, unsigned);
+    std::string get() const;
+};
+template<>
+class wxArgNormalizer<wxCharBuffer> {
+private:
+    wxArgNormalizer<wxCharBuffer>(wxCharBuffer&,
+                                  const wxFormatString *, unsigned);
+    std::string get() const;
+};
+template<>
+class wxArgNormalizer<wxScopedCharBuffer> {
+private:
+    wxArgNormalizer<wxScopedCharBuffer>(wxScopedCharBuffer&,
+                                        const wxFormatString *, unsigned);
+    std::string get() const;
+};
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 
 // this macro is used to implement specialization that are exactly same as
 // some other specialization, i.e. to "forward" the implementation (e.g. for
@@ -718,19 +801,23 @@ WX_ARG_NORMALIZER_FORWARD(const wxWCharBuffer&, const wchar_t*);
 #include "wx/stringimpl.h"
 
 #if !wxUSE_UTF8_LOCALE_ONLY
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 template<>
-struct wxArgNormalizerWchar<const std::string&>
+class wxArgNormalizerWchar<const std::string&>
     : public wxArgNormalizerWchar<const char*>
 {
+public:
     wxArgNormalizerWchar(const std::string& s,
                          const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerWchar<const char*>(s.c_str(), fmt, index) {}
 };
+#endif // NO_IMPLICIT_WXSTRING_ENCODING
 
 template<>
-struct wxArgNormalizerWchar<const wxStdWideString&>
+class wxArgNormalizerWchar<const wxStdWideString&>
     : public wxArgNormalizerWchar<const wchar_t*>
 {
+public:
     wxArgNormalizerWchar(const wxStdWideString& s,
                          const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerWchar<const wchar_t*>(s.c_str(), fmt, index) {}
@@ -738,26 +825,32 @@ struct wxArgNormalizerWchar<const wxStdWideString&>
 #endif // !wxUSE_UTF8_LOCALE_ONLY
 
 #if wxUSE_UNICODE_UTF8
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 template<>
-struct wxArgNormalizerUtf8<const std::string&>
+class wxArgNormalizerUtf8<const std::string&>
     : public wxArgNormalizerUtf8<const char*>
 {
+public:
     wxArgNormalizerUtf8(const std::string& s,
                         const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerUtf8<const char*>(s.c_str(), fmt, index) {}
 };
+#endif // wxNO_IMPLICIT_WXSTRING_ENCODING
 
 template<>
-struct wxArgNormalizerUtf8<const wxStdWideString&>
+class wxArgNormalizerUtf8<const wxStdWideString&>
     : public wxArgNormalizerUtf8<const wchar_t*>
 {
+public:
     wxArgNormalizerUtf8(const wxStdWideString& s,
                         const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerUtf8<const wchar_t*>(s.c_str(), fmt, index) {}
 };
 #endif // wxUSE_UNICODE_UTF8
 
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
 WX_ARG_NORMALIZER_FORWARD(std::string, const std::string&);
+#endif
 WX_ARG_NORMALIZER_FORWARD(wxStdWideString, const wxStdWideString&);
 
 #endif // wxUSE_STD_STRING
@@ -766,8 +859,9 @@ WX_ARG_NORMALIZER_FORWARD(wxStdWideString, const wxStdWideString&);
 // versions for wxUniChar, wxUniCharRef:
 // (this is same for UTF-8 and Wchar builds, we just convert to wchar_t)
 template<>
-struct wxArgNormalizer<const wxUniChar&> : public wxArgNormalizer<wchar_t>
+class wxArgNormalizer<const wxUniChar&> : public wxArgNormalizer<wchar_t>
 {
+public:
     wxArgNormalizer(const wxUniChar& s,
                     const wxFormatString *fmt, unsigned index)
         : wxArgNormalizer<wchar_t>(wx_truncate_cast(wchar_t, s.GetValue()), fmt, index) {}
@@ -782,8 +876,9 @@ struct wxArgNormalizer<const wxUniChar&> : public wxArgNormalizer<wchar_t>
 // in variadic arguments here.
 #if wxUSE_UNICODE
 template<typename T>
-struct wxArgNormalizerNarrowChar
+class wxArgNormalizerNarrowChar
 {
+public:
     wxArgNormalizerNarrowChar(T value,
                               const wxFormatString *fmt, unsigned index)
     {
@@ -804,26 +899,29 @@ struct wxArgNormalizerNarrowChar
 };
 
 template<>
-struct wxArgNormalizer<char> : public wxArgNormalizerNarrowChar<char>
+class wxArgNormalizer<char> : public wxArgNormalizerNarrowChar<char>
 {
+public:
     wxArgNormalizer(char value,
                     const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerNarrowChar<char>(value, fmt, index) {}
 };
 
 template<>
-struct wxArgNormalizer<unsigned char>
+class wxArgNormalizer<unsigned char>
     : public wxArgNormalizerNarrowChar<unsigned char>
 {
+public:
     wxArgNormalizer(unsigned char value,
                     const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerNarrowChar<unsigned char>(value, fmt, index) {}
 };
 
 template<>
-struct wxArgNormalizer<signed char>
+class wxArgNormalizer<signed char>
     : public wxArgNormalizerNarrowChar<signed char>
 {
+public:
     wxArgNormalizer(signed char value,
                     const wxFormatString *fmt, unsigned index)
         : wxArgNormalizerNarrowChar<signed char>(value, fmt, index) {}
