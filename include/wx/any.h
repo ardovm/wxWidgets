@@ -754,11 +754,13 @@ public:
     }
 
     // These two constructors are needed to deal with string literals
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
     wxAny(const char* value)
     {
         m_type = wxAnyValueTypeImpl<const char*>::sm_instance.get();
         wxAnyValueTypeImpl<const char*>::SetValue(value, m_buffer);
     }
+#endif
     wxAny(const wchar_t* value)
     {
         m_type = wxAnyValueTypeImpl<const wchar_t*>::sm_instance.get();
@@ -862,11 +864,13 @@ public:
 #endif
 
     // These two operators are needed to deal with string literals
+#ifndef wxNO_IMPLICIT_WXSTRING_ENCODING
     wxAny& operator=(const char* value)
     {
         Assign(value);
         return *this;
     }
+#endif
     wxAny& operator=(const wchar_t* value)
     {
         Assign(value);
@@ -1016,6 +1020,13 @@ public:
 #endif
 
 private:
+#ifdef wxNO_IMPLICIT_WXSTRING_ENCODING
+    wxAny(const char*);  // Disabled
+    wxAny& operator=(const char *&value); // Disabled
+    wxAny& operator=(const char value[]); // Disabled
+    wxAny& operator==(const char *value); // Disabled
+#endif
+
     // Assignment functions
     void AssignAny(const wxAny& any)
     {
