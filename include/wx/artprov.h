@@ -34,7 +34,7 @@ typedef wxString wxArtID;
 #define wxART_MAKE_CLIENT_ID(id)           wxS(#id) wxS("_C")
 #endif
 #define wxART_MAKE_ART_ID_FROM_STR(id)     (id)
-#define wxART_MAKE_ART_ID(id)              (#id)
+#define wxART_MAKE_ART_ID(id)              wxASCII_STR((#id))
 
 // ----------------------------------------------------------------------------
 // Art clients

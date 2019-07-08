@@ -52,7 +52,7 @@ wxString wxGetDialogClassDescription(const wxClassInfo *ci, T* dlg = NULL)
     if ( ci == wxCLASSINFO(wxDialog) )
     {
         return wxString::Format(wxS("dialog of type \"%s\""),
-                                (dlg ? typeid(*dlg) : typeid(T)).name());
+                                wxASCII_STR((dlg ? typeid(*dlg) : typeid(T)).name()));
     }
 
     // We consider that an unmangled name is clear enough to be used on its own.
