@@ -311,10 +311,10 @@ private:
 
 #ifdef wxNO_IMPLICIT_WXSTRING_ENCODING
   // These constructors are disabled because the encoding must be explicit
-  wxString(const char *psz);
-  wxString(const char *psz, size_t nLength);
-  wxString(const unsigned char *psz);
-  wxString(const unsigned char *psz, size_t nLength);
+  explicit wxString(const char *psz);
+  explicit wxString(const char *psz, size_t nLength);
+  explicit wxString(const unsigned char *psz);
+  explicit wxString(const unsigned char *psz, size_t nLength);
 #endif
 
   // buffer for holding temporary substring when using any of the methods
