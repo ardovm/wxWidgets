@@ -986,7 +986,7 @@ dnl ### begin block 20_COND_USE_WEBVIEW_WEBKIT2_1[wx.bkl] ###
         COND_USE_WEBVIEW_WEBKIT2_1=""
     fi
     AC_SUBST(COND_USE_WEBVIEW_WEBKIT2_1)
-dnl ### begin block 20_COND_USE_XRC_1[../../utils/execmon/execmon.bkl,../../utils/wxrc/wxrc.bkl,wx.bkl] ###
+dnl ### begin block 20_COND_USE_XRC_1[../../utils/execmon/execmon.bkl] ###
     COND_USE_XRC_1="#"
     if test "x$USE_XRC" = "x1" ; then
         COND_USE_XRC_1=""
