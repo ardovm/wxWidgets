@@ -22876,6 +22876,14 @@ fi
     fi
 fi
 
+if test "$wxUSE_XML" != "yes"; then
+    { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: XML library not built, cannot build wxrc" >&5
+$as_echo "$as_me: WARNING: XML library not built, cannot build wxrc" >&2;}
+else
+
+    echo "${HOST_PREFIX}install_name_tool \${changes} \${2}/wxrc-${WX_RELEASE}" >> change-install-names
+fi
+
 
 
 if test "$wxUSE_LIBMSPACK" != "no"; then
@@ -37086,8 +37094,6 @@ $as_echo "$as_me: WARNING: XML library not built, XRC resources disabled" >&2;}
 
         USE_XRC=1
         SAMPLES_SUBDIRS="$SAMPLES_SUBDIRS xrc"
-
-        echo "${HOST_PREFIX}install_name_tool \${changes} \${2}/wxrc-${WX_RELEASE}" >> change-install-names
     fi
 fi
 
@@ -41130,10 +41136,14 @@ for subdir in $SUBDIRS; do
                 done
             elif test ${subdir} = "utils"; then
                 makefiles=""
-                for util in ifacecheck ; do
+                for util in ifacecheck wxrc ; do
                     if test -d $srcdir/utils/$util ; then
-                        makefiles="utils/$util/src/Makefile.in \
-                                   $makefiles"
+                                                if test -f $srcdir/utils/$util/src/Makefile.in; then
+                            makefiles="utils/$util/src/Makefile.in \
+                                       $makefiles"
+                        else
+                            makefiles="utils/$util/Makefile.in $makefiles"
+                        fi
                     fi
                 done
             else
